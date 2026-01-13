@@ -1,0 +1,177 @@
+---
+// IMPORTACIONES DE COMPONENTES REACT
+import ScrollReveal from './ScrollReveal.jsx';
+import QrModal from './QrModal.jsx';
+---
+
+
+
+
+<section class="hero-section w-full relative">
+  
+  <!-- ============================================
+       1. VIDEO DE FONDO (Solo en escritorio)
+       ============================================ -->
+  <!-- Versión optimizada para múltiples formatos -->
+<video 
+  class="absolute inset-0 w-full h-full object-cover z-0 hidden lg:block"
+  autoplay 
+  loop 
+  muted 
+  playsinline
+  preload="metadata"
+  poster="/hero-bg-desktop.jpg"
+>
+  <source src="/hero-bg-desktop.mp4" type="video/mp4" />
+  <!-- Fallback para navegadores antiguos -->
+</video>
+
+
+
+
+  <!-- Nota: hidden lg:block = no se ve en móvil/tablet, solo en desktop (lg+) -->
+
+
+
+
+  <!-- ============================================
+       2. OVERLAY OSCURO (Legibilidad del texto)
+       ============================================ -->
+  <div class="hero-overlay absolute inset-0 w-full h-full z-1"></div>
+  <!-- Nota: z-1 = capa intermedia entre video (z-0) y contenido (z-10) -->
+
+
+
+
+  <!-- ============================================
+       3. CONTENIDO PRINCIPAL (Texto + CTA)
+       ============================================ -->
+  <div class="hero-content max-w-7xl mx-auto px-4 relative z-10 pt-200 md:pt-56 lg:pt-48">
+    
+    <!-- ScrollReveal: Anima el contenido al scrollear -->
+    <ScrollReveal client:only="react">
+      
+      <!-- TITULAR PRINCIPAL (H1) -->
+      <h1 class="hero-title text-2xl! sm:text-5xl! md:text-7xl! lg:text-7xl! leading-tight!">
+        <span class="hero-title-word">CADA FACTURA ESTÁ PROTEGIDA TÚ SIGUES CRECIENDO
+        </span>
+      </h1>
+      <!-- Nota: 
+        - text-2xl (móvil: 24px)
+        - sm:text-5xl (pequeño: 48px)
+        - md:text-7xl (tablet: 48px) - AUMENTADO A MÁXIMO
+        - lg:text-7xl (desktop: 48px)
+        - ! = !important (para forzar tamaños sin que CSS de componentes los sobrescriba)
+        - leading-tight = espaciado de líneas compacto para impacto visual
+        - hero-title-word/highlight = clases personalizadas para colores/estilos
+      -->
+
+
+
+
+      <!-- SUBTÍTULO (Explicación) -->
+      <!-- text-lg = 18px móvil | md:text-2xl = 24px tablet (AUMENTADO) -->
+      <!-- max-w-3xl ancho máximo (legibilidad de párrafo) -->
+      <p class="hero-subtitle text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
+        Asegura tus facturas a crédito de forma individual con seguros single-risk. 
+        Sin mínimos de facturación, sin comprometer toda tu cartera. 
+        <strong>Solicita cotización en minutos</strong> y recibe ofertas de aseguradoras 
+        de primer nivel como Solunion.
+      </p>
+      <!-- Nota:
+        - text-lg = 18px móvil
+        - md:text-2xl = 24px tablet (AUMENTADO)
+        - lg:text-xl = 20px desktop
+        - max-w-2xl = ancho máximo 672px (legibilidad de párrafo)
+        - leading-relaxed = altura de línea generosa para lectura cómoda
+        - <strong> = énfasis en el CTA suave ("Solicita cotización")
+      -->
+      
+    </ScrollReveal>
+  </div>
+
+
+
+
+  <!-- ============================================
+       4. MODAL DE QR (Flotante - SOLO DESKTOP)
+       ============================================ -->
+  <div class="hidden lg:block">
+    <QrModal client:only="react" />
+  </div>
+  <!-- Nota: client:only="react" = Este componente solo se renderiza en el cliente (interactivo) -->
+
+
+
+
+  <!-- ============================================
+       5. BOTÓN SECUNDARIO (Derecha)
+       ============================================ -->
+  <div class="hero-buttons-right">
+    <a href="#contact" class="hero-btn-secondary-right hero-btn">
+      HABLA CON UN ESPECIALISTA
+    </a>
+  </div>
+  <!-- Nota:
+    - Botón flotante a la derecha (CTA secundario)
+    - href="#contact" = scroll suave a sección de contacto
+    - hero-btn = Clase adicional para que el script pueda detectarlo
+  -->
+
+
+
+
+</section>
+
+<!-- SCRIPT PARA DETECTAR POSICIÓN DEL BOTÓN -->
+<script>
+  const updateButtonStyle = () => {
+    const heroBtn = document.querySelector('.hero-btn-secondary-right');
+    const heroSection = document.querySelector('.hero-section');
+    const footer = document.querySelector('footer');
+
+    if (!heroBtn || !heroSection || !footer) {
+      console.warn('Elementos no encontrados');
+      return;
+    }
+
+    const btnRect = heroBtn.getBoundingClientRect();
+    const heroRect = heroSection.getBoundingClientRect();
+    const footerRect = footer.getBoundingClientRect();
+
+    // Calcular si está dentro del hero (incluyendo parte oculta)
+    const isInHero = btnRect.top < heroRect.bottom && btnRect.bottom > heroRect.top;
+    
+    // Calcular si está dentro del footer
+    const isInFooter = btnRect.top < footerRect.bottom && btnRect.bottom > footerRect.top;
+
+    console.log('isInHero:', isInHero, 'isInFooter:', isInFooter);
+
+    if (isInHero || isInFooter) {
+      if (!heroBtn.classList.contains('btn-light')) {
+        heroBtn.classList.add('btn-light');
+        console.log('Añadida clase btn-light');
+      }
+    } else {
+      if (heroBtn.classList.contains('btn-light')) {
+        heroBtn.classList.remove('btn-light');
+        console.log('Quitada clase btn-light');
+      }
+    }
+  };
+
+  // Esperar a que el DOM esté completamente cargado
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => updateButtonStyle(), 100);
+    });
+  } else {
+    updateButtonStyle();
+  }
+
+  // Ejecutar en cada scroll
+  window.addEventListener('scroll', updateButtonStyle, { passive: true });
+  
+  // Ejecutar en cada resize
+  window.addEventListener('resize', updateButtonStyle);
+</script>

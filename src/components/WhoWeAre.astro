@@ -1,0 +1,191 @@
+
+<!-- ============================================
+     SECCIÓN: ESPECIALISTAS EN TU EQUIPO
+     ============================================ -->
+<section id="specialists" class="py-20 md:py-32 bg-white overflow-hidden">
+  
+  <!-- CONTENEDOR PRINCIPAL (Ancho máximo 1280px) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-0 lg:ml-37.5">
+    
+    <!-- ============================================
+         GRID PRINCIPAL (Imagen + Contenido)
+         Responsivo: 1 columna móvil, 2 columnas desktop
+         ============================================ -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-start min-h-100">
+      
+      
+      <!-- ============================================
+           COLUMNA IZQUIERDA: IMAGEN DEL ESPECIALISTA
+           ============================================ -->
+      <!-- h-fit = Altura se ajusta al contenido -->
+      <!-- lg:-ml-20 lg:w-11/12 = Desplazamiento negativo en desktop -->
+      <!-- mx-auto = Centrado horizontalmente -->
+      <!-- mb-15 md:mb-18 = Margen inferior en móvil/tablet -->
+      <div class="h-fit lg:-ml-20 lg:w-11/12 mx-auto mb-15 md:mb-18">
+        
+        <!-- Contenedor de imagen con bordes, sombra y esquinas redondeadas -->
+        <div class="relative rounded-2xl overflow-hidden border border-gray-100 group h-full shadow-sm">
+          
+          <!-- Overlay oscuro sutil (mejora contraste) -->
+          <div class="absolute inset-0 bg-black/5 z-10 pointer-events-none"></div>
+          <!-- Nota:
+            - absolute inset-0 = Cubre todo el contenedor
+            - bg-black/5 = Fondo negro con 5% opacidad
+            - z-10 = Encima de la imagen
+            - pointer-events-none = No interfiere con interacciones
+          -->
+          
+          <!-- IMAGEN OPTIMIZADA DEL ESPECIALISTA -->
+          <img 
+            src="persona-optimized.webp" 
+            alt="Especialista de ASEOFI y DIEGOCOR"
+            width="800"
+            height="600"
+            loading="lazy"
+            class="w-full object-cover object-center max-h-150"
+          />
+          <!-- Nota:
+            - width/height = Proporciona dimensiones para evitar layout shift
+            - loading="lazy" = Carga solo cuando está visible (optimización)
+            - object-cover = Rellena el contenedor sin distorsionar
+            - object-center = Centra la imagen
+            - max-h-150 = Altura máxima 600px
+          -->
+        </div>
+      </div>
+
+      <!-- ============================================
+           COLUMNA DERECHA: CONTENIDO TEXTUAL
+           ============================================ -->
+      <!-- flex flex-col = Flexbox vertical -->
+      <!-- justify-start = Contenido alineado arriba -->
+      <!-- lg:-ml-8 = Margen izquierdo negativo en desktop (ajuste visual) -->
+      <!-- md:pl-6 = Padding izquierdo 24px SOLO EN TABLET (separa del borde) -->
+      <div class="flex flex-col justify-start pt-0 pb-10 md:pl-6 lg:pl-0 lg:-ml-8">
+
+        
+        <!-- ============================================
+             TÍTULO PRINCIPAL
+             ============================================ -->
+        <!-- mb-10 = Margen inferior 40px -->
+        <!-- -mt-5 = Margen superior negativo -20px (ajuste) -->
+        <div class="mb-10 -mt-5">
+          <h2 class="text-4xl md:text-7xl font-bold text-gray-900 leading-tight mb-0 uppercase tracking-tighter">
+            Asesoramiento De Expertos
+          </h2>
+          <!-- Nota:
+            - text-4xl/md:text-7xl = Responsivo (móvil/desktop)
+            - font-bold = Peso 700
+            - text-gray-900 = Negro oscuro
+            - leading-tight = Altura compacta (1.25)
+            - uppercase = Mayúsculas
+            - tracking-tighter = Espaciado compacto entre letras
+          -->
+        </div>
+
+        <!-- ============================================
+             CONTENEDOR DE CONTENIDO
+             ============================================ -->
+        <!-- space-y-6 = Espaciado vertical 24px entre elementos -->
+        <div class="space-y-6">
+          
+          <!-- PÁRRAFO 1: Presentación -->
+          <!-- text-xl = 20px (coherente con features y párrafos) -->
+          <!-- text-gray-700 = Gris oscuro (#374151) -->
+          <!-- leading-relaxed = Altura generosa (1.625) para legibilidad -->
+          <!-- max-w-2xl = Ancho máximo 672px -->
+          <p class="text-xl text-gray-700 leading-relaxed max-w-2xl">
+            En DIEGOCOR, nos respaldamos con Solunion, una de las compañías más importantes del mundo en seguros de crédito. 
+            Nuestro equipo te asesora sin compromiso sobre cómo proteger tus facturas a crédito con seguros single-risk.
+          </p>
+          <!-- Nota:
+            - text-xl = 20px (mismo tamaño que features y párrafos)
+            - DIEGOCOR + Solunion (respaldo del PDF)
+            - sin compromiso
+            - single-risk (diferenciador)
+          -->
+
+          <!-- PÁRRAFO 2: Propuesta de valor -->
+          <!-- text-xl = 20px (coherente con párrafo anterior) -->
+          <p class="text-xl text-gray-700 leading-relaxed max-w-2xl">
+            No estás obligado a asegurar toda tu cartera ni hay requisitos mínimos de facturación. Asegura solo las facturas que necesites, 
+            recibe una cotización con cobertura de hasta el 90%, y decide si aceptar. Si tu deudor no paga, Solunion se encarga de compensarte.
+          </p>
+          <!-- Nota:
+            - text-xl = 20px (mismo tamaño que otros párrafos)
+            - Sin obligaciones (ventaja clave del PDF)
+            - Hasta 90% (del PDF)
+            - Proceso simple (4 pasos resumidos)
+            - Protección contra impago (beneficio central)
+          -->
+
+          <!-- ============================================
+               LISTA DE BENEFICIOS (3 puntos - TEXTO GRANDE)
+               ============================================ -->
+          <!-- space-y-5 = Espaciado vertical 20px entre items (más separación) -->
+          <div class="space-y-5">
+            
+            <!-- BENEFICIO 1 -->
+            <!-- text-xl = 20px (coherente con párrafos) -->
+            <div class="flex items-start gap-3">
+              <div class="shrink-0 mt-1">
+                <div class="w-2 h-2 rounded-full bg-[#0d203e]"></div>
+                <!-- Nota:
+                  - w-2 h-2 = 8x8px (punto pequeño)
+                  - rounded-full = Círculo perfecto
+                  - bg-[#0d203e] = Azul oscuro
+                  - mt-1 = Alineación visual con el texto
+                -->
+              </div>
+              <p class="text-xl text-gray-700">
+                Asegura solo las facturas que necesites
+              </p>
+              <!-- Nota:
+                - text-xl = 20px (coherente con párrafos)
+                - color: gray-700
+              -->
+            </div>
+
+            <!-- BENEFICIO 2 -->
+            <!-- text-xl = 20px (coherente con párrafos) -->
+            <div class="flex items-start gap-3">
+              <div class="shrink-0 mt-1">
+                <div class="w-2 h-2 rounded-full bg-[#0d203e]"></div>
+              </div>
+              <p class="text-xl text-gray-700">
+                Hasta 90% del importe cubierto
+              </p>
+              <!-- Nota:
+                - text-xl = 20px (mismo tamaño que beneficio anterior)
+              -->
+            </div>
+
+            <!-- BENEFICIO 3 -->
+            <!-- text-xl = 20px (coherente con párrafos) -->
+            <div class="flex items-start gap-3">
+              <div class="shrink-0 mt-1">
+                <div class="w-2 h-2 rounded-full bg-[#0d203e]"></div>
+              </div>
+              <p class="text-xl text-gray-700">
+                Solunion se encarga si no pagan
+              </p>
+              <!-- Nota:
+                - text-xl = 20px (mismo tamaño que otros beneficios)
+              -->
+            </div>
+          </div>
+          <!-- Fin de lista de beneficios -->
+
+        </div>
+        <!-- Fin del contenedor -->
+
+      </div>
+      <!-- Fin de la columna derecha -->
+
+    </div>
+    <!-- Fin del grid -->
+
+  </div>
+  <!-- Fin del contenedor -->
+
+</section>

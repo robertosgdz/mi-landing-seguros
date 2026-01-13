@@ -1,0 +1,211 @@
+---
+// CookieBanner.astro
+---
+
+<div id="cookie-banner" class="cookie-banner">
+  <div class="cookie-content">
+    <div class="cookie-text">
+      <h3>Gestión de Cookies y Datos Personales</h3>
+      <p>
+        En <strong>ASEOFI</strong>, una plataforma de seguros de crédito single-risk respaldada por 
+        <strong>DIEGOCOR Correduría de Seguros, S.L.</strong> (CDGS: J-3021, Avda. Victoria, 6 Bajo, 30007, Murcia, España),
+        utilizamos cookies y tecnologías similares para mejorar tu experiencia, analizar el uso de nuestro sitio web 
+        y garantizar el correcto funcionamiento de nuestros servicios. 
+        <br/><br/>
+        Los datos personales que proporcionas (nombre, email, teléfono, información sobre tus deudores) 
+        se tratarán de forma confidencial y serán compartidos con <strong>Solunion</strong> y otras aseguradoras 
+        de primer nivel para procesar tus solicitudes de seguros de crédito. 
+        <br/><br/>
+        Al aceptar, consientes el uso de cookies y el tratamiento de tus datos conforme a nuestra 
+        <button id="privacy-policy-link" class="cookie-link">Política de Privacidad</button>.
+      </p>
+    </div>
+    
+    <div class="cookie-buttons">
+      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">
+        No, rechazar
+      </button>
+      <button id="cookie-accept" class="cookie-btn cookie-btn-accept">
+        Sí, aceptar
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 50;
+    padding: 1.5rem;
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .cookie-text h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0d203e;
+  }
+
+  .cookie-text p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  .cookie-text strong {
+    color: #0d203e;
+    font-weight: 600;
+  }
+
+  .cookie-link {
+    color: #0d203e;
+    font-weight: 600;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .cookie-link:hover {
+    opacity: 0.7;
+  }
+
+  .cookie-buttons {
+    display: flex;
+    gap: 1rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .cookie-btn-reject {
+    background-color: #f3f4f6;
+    color: #0d203e;
+    border: 1px solid #e5e7eb;
+  }
+
+  .cookie-btn-reject:hover {
+    background-color: #e5e7eb;
+    border-color: #d1d5db;
+  }
+
+  .cookie-btn-accept {
+    background-color: #0d203e;
+    color: #ffffff;
+  }
+
+  .cookie-btn-accept:hover {
+    background-color: #1a2d4d;
+  }
+
+  .cookie-banner.hidden {
+    display: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .cookie-banner {
+      padding: 1rem;
+    }
+
+    .cookie-content {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .cookie-buttons {
+      width: 100%;
+      gap: 0.75rem;
+    }
+
+    .cookie-btn {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+    }
+
+    .cookie-text p {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+<script>
+  const cookieBanner = document.getElementById('cookie-banner');
+  const cookieAccept = document.getElementById('cookie-accept');
+  const cookieReject = document.getElementById('cookie-reject');
+  const privacyPolicyLink = document.getElementById('privacy-policy-link');
+
+  // Verificar si los elementos existen
+  if (!cookieBanner || !cookieAccept || !cookieReject) {
+    console.error('Cookie banner elements not found');
+    throw new Error('Cookie banner elements not found');
+  }
+
+  // Verificar si ya tiene decisión de cookies
+  const cookieConsent = localStorage.getItem('cookie-consent');
+
+  if (cookieConsent) {
+    cookieBanner.classList.add('hidden');
+  }
+
+  // Botón ACEPTAR
+  cookieAccept.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'accepted');
+    cookieBanner.classList.add('hidden');
+    console.log('Cookies aceptadas');
+  });
+
+  // Botón RECHAZAR
+  cookieReject.addEventListener('click', () => {
+    localStorage.setItem('cookie-consent', 'rejected');
+    cookieBanner.classList.add('hidden');
+    console.log('Cookies rechazadas');
+  });
+
+  // Link de Política de Privacidad
+  privacyPolicyLink?.addEventListener('click', () => {
+    (window as any).openPrivacyModal?.();
+  });
+</script>

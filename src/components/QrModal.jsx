@@ -1,0 +1,94 @@
+import React, { useState, useEffect } from 'react';
+
+export default function QrModal() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Bloquear scroll del body cuando el modal está abierto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => { document.body.style.overflow = 'auto'; };
+  }, [isOpen]);
+
+  // Cerrar con tecla Escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
+
+  return (
+    <>
+      {/* BOTÓN FLOTANTE */}
+      <div className="qr-button-container top-28! md:top-40!">
+        <button 
+          className="hero-btn-qr" 
+          onClick={() => setIsOpen(true)}
+          aria-label="Descargar app"
+          title="Escanea para descargar la app"
+        >
+          <img 
+            src="/qr-aseofi.svg" 
+            alt="QR para descargar app" 
+            className="qr-image"
+            fetchpriority="high"
+          />
+          <p className="qr-label">DESCARGA LA APP</p>
+        </button>
+      </div>
+
+      {/* MODAL POPUP */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-200 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn"
+          onClick={() => setIsOpen(false)} 
+        >
+          <div 
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative animate-fadeInUp"
+            onClick={(e) => e.stopPropagation()} 
+          >
+            
+            {/* BOTÓN DE CERRAR (X) */}
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-[#0d203e] transition-colors duration-200"
+              aria-label="Cerrar"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            {/* Contenido del Modal */}
+            <div className="flex flex-col items-center gap-8 text-center pt-4">
+              
+              {/* QR IMAGEN */}
+              <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                <img 
+                  src="/qr-aseofi.svg" 
+                  alt="QR para descargar app" 
+                  className="w-64 h-64 object-contain rounded-lg"
+                  
+                />
+              </div>
+
+              {/* TEXTO - DESCARGA LA APP */}
+              <div className="space-y-3">
+                <h3 className="text-2xl font-bold text-[#0d203e]">DESCARGA LA APP</h3>
+                <p className="text-gray-600 text-xl">
+                  Escanea este código QR con tu teléfono para descargar nuestra aplicación
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

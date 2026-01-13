@@ -1,0 +1,294 @@
+---
+// LegalInfoModal.astro
+---
+
+<div id="legal-info-modal" class="legal-info-modal hidden">
+  <!-- OVERLAY SEMI-TRANSPARENTE -->
+  <div id="legal-info-overlay" class="legal-info-overlay"></div>
+
+  <!-- CONTENEDOR DEL MODAL -->
+  <div class="legal-info-modal-content">
+    
+    <!-- BOTÓN CERRAR (X) -->
+    <button id="close-legal-info-modal" class="legal-info-close-btn">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- CONTENIDO DEL MODAL -->
+    <div class="legal-info-modal-body">
+      
+      <!-- TÍTULO -->
+      <h2>Información Legal</h2>
+
+      <!-- CONTENIDO DEL TEXTO LEGAL -->
+      <div class="legal-info-content">
+        
+        <!-- SECCIÓN 1: DENOMINACIÓN SOCIAL -->
+        <h3>Denominación Social</h3>
+        <p>
+          <strong>DIEGOCOR, Correduría de Seguros, S.L.</strong>
+        </p>
+
+        <!-- SECCIÓN 2: CÓDIGO DGS -->
+        <h3>Código de Registro</h3>
+        <p>
+          CDGS: <strong>J-3021</strong>
+        </p>
+
+        <!-- SECCIÓN 3: DOMICILIO SOCIAL -->
+        <h3>Domicilio Social</h3>
+        <p>
+          Avda. Victoria, 6 Bajo<br/>
+          30007, Murcia, España
+        </p>
+
+        <!-- SECCIÓN 4: CONTACTO -->
+        <h3>Datos de Contacto</h3>
+        <p>
+          Email: <a href="mailto:info@diegocor.com" class="legal-info-link">info@diegocor.com</a>
+        </p>
+
+        <!-- SECCIÓN 5: SOBRE ASEOFI -->
+        <h3>Sobre ASEOFI</h3>
+        <p>
+          ASEOFI es una plataforma de seguros de crédito single-risk desarrollada y respaldada por 
+          DIEGOCOR, Correduría de Seguros, S.L. Esta aplicación permite a empresas, autónomos y 
+          profesionales asegurar facturas a crédito de forma individual, sin necesidad de contratar 
+          seguros de cartera completa (global-risk) ni cumplir requisitos mínimos de facturación.
+        </p>
+
+        <!-- SECCIÓN 6: ASEGURADORAS -->
+        <h3>Aseguradoras Colaboradoras</h3>
+        <p>
+          ASEOFI trabaja con aseguradoras de primer nivel como <strong>Solunion</strong>, 
+          una de las compañías más importantes del mundo en seguros de crédito, para garantizar 
+          la calidad y confiabilidad de nuestros servicios.
+        </p>
+
+        <!-- SECCIÓN 7: AVISO DE RIESGO -->
+        <h3>Advertencia de Riesgo</h3>
+        <p>
+          La contratación de seguros de crédito conlleva riesgos inherentes. Le recomendamos 
+          revisar cuidadosamente los términos y condiciones de su póliza antes de formalizar 
+          cualquier contrato. Para más información, puede contactarnos a través de los canales 
+          mencionados anteriormente.
+        </p>
+      </div>
+
+      <!-- BOTÓN CERRAR -->
+      <button id="close-legal-info-modal-btn" class="legal-info-btn-close">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .legal-info-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .legal-info-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+
+  .legal-info-modal-content {
+    position: relative;
+    z-index: 101;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .legal-info-close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.3s ease;
+    z-index: 102;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .legal-info-close-btn:hover {
+    color: #0d203e;
+  }
+
+  .legal-info-modal-body {
+    padding: 3rem 2rem 2rem 2rem;
+  }
+
+  .legal-info-modal-body h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #0d203e;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.2;
+  }
+
+  .legal-info-content {
+    margin-bottom: 2rem;
+  }
+
+  .legal-info-content h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0d203e;
+    margin: 1.5rem 0 0.75rem 0;
+    line-height: 1.3;
+  }
+
+  .legal-info-content h3:first-of-type {
+    margin-top: 0;
+  }
+
+  .legal-info-content p {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .legal-info-content strong {
+    color: #0d203e;
+    font-weight: 600;
+  }
+
+  .legal-info-link {
+    color: #0d203e;
+    font-weight: 600;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+
+  .legal-info-link:hover {
+    opacity: 0.7;
+  }
+
+  .legal-info-btn-close {
+    width: 100%;
+    padding: 0.875rem 2rem;
+    background-color: #0d203e;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .legal-info-btn-close:hover {
+    background-color: #1a2d4d;
+    transform: translateY(-2px);
+  }
+
+  .legal-info-modal.hidden {
+    display: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .legal-info-modal-content {
+      width: 95%;
+      border-radius: 0.75rem;
+    }
+
+    .legal-info-modal-body {
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+    }
+
+    .legal-info-modal-body h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .legal-info-content h3 {
+      font-size: 1rem;
+      margin: 1.25rem 0 0.5rem 0;
+    }
+
+    .legal-info-content p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  const legalInfoModal = document.getElementById('legal-info-modal');
+  const closeLegalInfoModalBtn = document.getElementById('close-legal-info-modal-btn');
+  const closeLegalInfoBtn = document.getElementById('close-legal-info-modal');
+  const legalInfoOverlay = document.getElementById('legal-info-overlay');
+
+  // Verificar que los elementos existen
+  if (!legalInfoModal || !closeLegalInfoModalBtn || !closeLegalInfoBtn) {
+    console.error('Legal info modal elements not found');
+  }
+
+  // Función para cerrar modal
+  const closeModal = () => {
+    if (legalInfoModal) {
+      legalInfoModal.classList.add('hidden');
+    }
+  };
+
+  // Cerrar al hacer clic en botón Cerrar
+  closeLegalInfoModalBtn?.addEventListener('click', closeModal);
+
+  // Cerrar al hacer clic en X
+  closeLegalInfoBtn?.addEventListener('click', closeModal);
+
+  // Cerrar al hacer clic en el overlay
+  legalInfoOverlay?.addEventListener('click', closeModal);
+
+  // Exponer función global para abrir el modal
+  (window as any).openLegalInfoModal = () => {
+    if (legalInfoModal) {
+      legalInfoModal.classList.remove('hidden');
+    }
+  };
+</script>

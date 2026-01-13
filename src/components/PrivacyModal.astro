@@ -1,0 +1,244 @@
+---
+// PrivacyModal.astro
+---
+
+<div id="privacy-modal" class="privacy-modal hidden">
+  <!-- OVERLAY SEMI-TRANSPARENTE -->
+  <div id="privacy-overlay" class="privacy-overlay"></div>
+
+  <!-- CONTENEDOR DEL MODAL -->
+  <div class="privacy-modal-content">
+    
+    <!-- BOTÓN CERRAR (X) -->
+    <button id="close-privacy-modal" class="privacy-close-btn">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- CONTENIDO DEL MODAL -->
+    <div class="privacy-modal-body">
+      
+      <!-- TÍTULO -->
+      <h2>Privacidad de Datos</h2>
+
+      <!-- CONTENIDO DEL TEXTO LEGAL -->
+      <div class="privacy-content">
+        <p>
+          Con arreglo a lo dispuesto en la Ley Orgánica 15/1999 de 13 de diciembre, 
+          de Protección de Datos de Carácter Personal, le informamos que sus datos personales 
+          han sido almacenados en nuestro fichero automatizado con el fin de remitirle información comercial.
+        </p>
+
+        <p>
+          Usted tiene derecho a acceder a sus datos almacenados en nuestro fichero de clientes, 
+          rectificarlos, cancelarlos, así como oponerse a su tratamiento.
+        </p>
+
+        <p>
+          Para ejercitar su derecho de acceso, modificación, cancelación u oposición a su tratamiento 
+          le rogamos lo haga a través de correo electrónico a: 
+          <a href="mailto:info@diegocor.com" class="privacy-link">info@diegocor.com</a>
+        </p>
+      </div>
+
+      <!-- BOTÓN CERRAR -->
+      <button id="close-privacy-modal-btn" class="privacy-btn-close">
+        Entendido
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .privacy-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .privacy-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+
+  .privacy-modal-content {
+    position: relative;
+    z-index: 101;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .privacy-close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.3s ease;
+    z-index: 102;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .privacy-close-btn:hover {
+    color: #0d203e;
+  }
+
+  .privacy-modal-body {
+    padding: 3rem 2rem 2rem 2rem;
+  }
+
+  .privacy-modal-body h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #0d203e;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.2;
+  }
+
+  .privacy-content {
+    space-y: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .privacy-content p {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    text-align: justify;
+  }
+
+  .privacy-content p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .privacy-link {
+    color: #0d203e;
+    font-weight: 600;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+
+  .privacy-link:hover {
+    opacity: 0.7;
+  }
+
+  .privacy-btn-close {
+    width: 100%;
+    padding: 0.875rem 2rem;
+    background-color: #0d203e;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .privacy-btn-close:hover {
+    background-color: #1a2d4d;
+    transform: translateY(-2px);
+  }
+
+  .privacy-modal.hidden {
+    display: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .privacy-modal-content {
+      width: 95%;
+      border-radius: 0.75rem;
+    }
+
+    .privacy-modal-body {
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+    }
+
+    .privacy-modal-body h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .privacy-content p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+  }
+</style>
+
+<script>
+  const privacyModal = document.getElementById('privacy-modal');
+  const closePrivacyModalBtn = document.getElementById('close-privacy-modal-btn');
+  const closePrivacyBtn = document.getElementById('close-privacy-modal');
+  const privacyOverlay = document.getElementById('privacy-overlay');
+
+  // Verificar que los elementos existen
+  if (!privacyModal || !closePrivacyModalBtn || !closePrivacyBtn) {
+    console.error('Privacy modal elements not found');
+  }
+
+  // Función para cerrar modal
+  const closeModal = () => {
+    if (privacyModal) {
+      privacyModal.classList.add('hidden');
+    }
+  };
+
+  // Cerrar al hacer clic en botón Entendido
+  closePrivacyModalBtn?.addEventListener('click', closeModal);
+
+  // Cerrar al hacer clic en X
+  closePrivacyBtn?.addEventListener('click', closeModal);
+
+  // Cerrar al hacer clic en el overlay
+  privacyOverlay?.addEventListener('click', closeModal);
+
+  // Exponer función global para abrir el modal (sin tipos TypeScript)
+  (window as any).openPrivacyModal = () => {
+    if (privacyModal) {
+      privacyModal.classList.remove('hidden');
+    }
+  };
+</script>

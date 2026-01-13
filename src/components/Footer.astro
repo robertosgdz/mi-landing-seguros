@@ -1,0 +1,148 @@
+<!-- ============================================
+     FOOTER: PIE DE PÁGINA
+     ============================================ -->
+<footer class="bg-[#0d203e] text-gray-100 py-16">
+  
+  <!-- CONTENEDOR PRINCIPAL (Ancho máximo con padding lateral) -->
+  <div class="w-full max-w-350 px-4 lg:pl-0 lg:pr-65 mx-auto md:mx-0 lg:ml-16.5">
+    
+    
+    <!-- ============================================
+         AVISO DE RIESGO (Información legal obligatoria)
+         ============================================ -->
+    <div class="mb-16">
+      <p class="text-lg font-semibold text-gray-50 leading-relaxed">
+        La contratación de seguros de crédito conlleva riesgos. ASEOFI ofrece seguros single-risk respaldados por Solunion, 
+        una aseguradora de primer nivel. Asegúrate de revisar los términos y condiciones de tu póliza antes de contratar. 
+        Puedes obtener más información contactando a DIEGOCOR, Correduría de Seguros, S.L. (CDGS: J-3021).
+      </p>
+    </div>
+
+
+    <!-- ============================================
+         NAVEGACIÓN PRINCIPAL
+         ============================================ -->
+    <div class="flex flex-col md:flex-row gap-8 text-lg font-semibold text-gray-200 mb-12">
+      
+      <a 
+        href="#how-it-works" 
+        class="hover:text-white transition"
+      >
+        Cómo Funciona
+      </a>
+      
+      <a 
+        href="#faq" 
+        class="hover:text-white transition"
+      >
+        Preguntas Frecuentes
+      </a>
+      
+      <a 
+        href="#specialists" 
+        class="hover:text-white transition"
+      >
+        Equipo
+      </a>
+      
+      <a 
+        href="#contact" 
+        class="hover:text-white transition"
+      >
+        Contáctanos
+      </a>
+    </div>
+
+
+    <!-- ============================================
+         SECCIÓN LEGAL Y CRÉDITOS
+         ============================================ -->
+    <div class="border-t border-white border-opacity-20 pt-8 mb-8">
+      
+      <!-- ENLACES LEGALES -->
+      <div class="flex flex-col md:flex-row gap-8 text-lg font-semibold text-gray-200 mb-8">
+        
+        <!-- BOTÓN: Protección de datos (ABRE MODAL PRIVACY) -->
+        <button 
+          id="privacy-btn"
+          class="hover:text-white transition bg-none border-none cursor-pointer p-0 text-lg font-semibold text-gray-200"
+        >
+          Protección De Datos
+        </button>
+        
+        <!-- BOTÓN: Información legal (ABRE MODAL LEGAL) -->
+        <button 
+          id="legal-info-btn"
+          class="hover:text-white transition bg-none border-none cursor-pointer p-0 text-lg font-semibold text-gray-200"
+        >
+          Información Legal
+        </button>
+        
+        <!-- BOTÓN: Gestionar cookies -->
+        <button 
+          id="manage-cookies-btn"
+          class="hover:text-white transition bg-none border-none cursor-pointer p-0 text-lg font-semibold text-gray-200"
+        >
+          Gestionar Cookies
+        </button>
+      </div>
+
+
+      <!-- ============================================
+           COPYRIGHT Y CRÉDITOS
+           ============================================ -->
+      <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-8">
+        
+        <div class="text-base font-semibold text-gray-300 space-y-2">
+          <p>© ASEOFI 2026</p>
+          <p>DIEGOCOR, Correduría de Seguros, S.L.</p>
+          <p>CDGS: J-3021 | Avda. Victoria, 6 Bajo, 30007, Murcia, España</p>
+        </div>
+
+
+        <div class="text-base font-semibold text-gray-300">
+          <p>
+            Desarrollado por <span class="text-gray-200">Roberto Segado Díaz</span>
+          </p>
+          <p class="text-gray-400 text-sm mt-2">
+            <a href="tel:+34676641540" class="hover:text-white transition">+34 676 641 540</a>
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</footer>
+
+
+<!-- SCRIPTS PARA INTERACTIVIDAD -->
+<script>
+  const privacyBtn = document.getElementById('privacy-btn');
+  const legalInfoBtn = document.getElementById('legal-info-btn');
+  const manageCookiesBtn = document.getElementById('manage-cookies-btn');
+
+  // Abrir modal de privacidad
+  privacyBtn?.addEventListener('click', () => {
+    (window as any).openPrivacyModal?.();
+  });
+
+  // Abrir modal de información legal
+  legalInfoBtn?.addEventListener('click', () => {
+    (window as any).openLegalInfoModal?.();
+  });
+
+  // Gestionar cookies
+  manageCookiesBtn?.addEventListener('click', () => {
+    localStorage.removeItem('cookie-consent');
+    const cookieBanner = document.getElementById('cookie-banner');
+    if (cookieBanner) {
+      cookieBanner.classList.remove('hidden');
+      cookieBanner.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  });
+</script>

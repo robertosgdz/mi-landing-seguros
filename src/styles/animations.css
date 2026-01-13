@@ -1,0 +1,91 @@
+/* Animaciones compartidas */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeInUp {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+/* Clase reutilizable para fade-in */
+.animate-fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Para diferentes velocidades */
+.animate-fade-in-slow {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-fast {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* Delays para efecto cascada */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+/* Transiciones suaves */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effects */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-shadow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+/* --- ANIMACIÓN ACORDEÓN (FAQ) --- */
+
+.faq-transition {
+  display: grid;
+  transition: grid-template-rows 0.5s ease-out; /* Velocidad y suavidad */
+}
+
+/* Estado Cerrado: Altura 0 */
+.faq-closed {
+  grid-template-rows: 0fr;
+}
+
+/* Estado Abierto: Altura automática (1 fracción del espacio disponible) */
+.faq-open {
+  grid-template-rows: 1fr;
+}
+
+/* El contenido interno DEBE tener esto para que funcione */
+.faq-inner {
+  overflow: hidden;
+  min-height: 0; /* CRUCIAL: Evita el salto brusco */
+}

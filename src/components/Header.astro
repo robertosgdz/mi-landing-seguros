@@ -1,0 +1,208 @@
+---
+import type { lazy } from 'astro:schema';
+import '../styles/header.css';
+import MobileMenu from './MobileMenu.jsx';
+---
+
+
+
+
+
+<!-- HEADER FIJO -->
+<header id="main-header" class="fixed top-0 left-0 w-full z-50">
+  
+  <!-- MENÚ DE NAVEGACIÓN -->
+  <nav id="nav-container" class="w-full bg-transparent transition-all duration-1000 ease-in-out">
+    <div class="w-full px-4 sm:px-6 lg:px-17.5 py-4 relative flex justify-between items-center">
+      
+      <!-- 1. LOGO -->
+      <div class="flex items-center shrink-0 z-20">
+        <img 
+          id="header-logo" 
+          src="/logo_aseofi_inverso.png" 
+          alt="ASEOFI Logo" 
+          class="h-20 md:h-24 lg:h-20 transition-opacity duration-1000 ease-in-out"
+        />
+      </div>
+
+
+
+
+
+      <!-- 2. ENLACES (Solo Desktop Grande) -->
+      <div 
+        id="nav-links" 
+        class="hidden lg:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 space-x-10 transition-opacity duration-1000 ease-in-out opacity-100"
+      >
+        <a href="#how-it-works" class="nav-link text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm">Cómo funciona</a>
+        <a href="#faq" class="nav-link text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm">Preguntas</a>
+        <a href="#specialists" class="nav-link text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm">Equipo</a>
+        <a href="#contact" class="nav-link text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm">Contáctanos</a>
+      </div>
+
+
+
+
+
+      <!-- 3. MENÚ MÓVIL Y TABLET -->
+      <div class="flex items-center shrink-0 z-20 lg:hidden scale-125">
+         <MobileMenu client:only="react" />
+      </div>
+      
+    </div>
+  </nav>
+
+
+
+
+
+</header>
+
+
+
+
+
+<script>
+  const navContainer = document.getElementById('nav-container');
+  const navLinksContainer = document.getElementById('nav-links');
+  const headerLogo = document.getElementById('header-logo') as HTMLImageElement | null;
+  const navLinks = document.querySelectorAll('.nav-link');
+
+
+
+
+
+  let lastScrollY = window.scrollY;
+  let accumulatedScrollUp = 0; 
+
+
+
+
+
+  const threshold = window.innerHeight - 150; 
+  const SHOW_TRIGGER_DISTANCE = 200; 
+
+
+
+
+
+  const updateHeader = () => {
+    if (!navContainer) return;
+
+
+
+
+
+    const currentScrollY = window.scrollY;
+    const isMobile = window.innerWidth < 1024;
+    const scrollDelta = currentScrollY - lastScrollY; 
+
+
+
+
+
+    if (currentScrollY > threshold) {
+      // FUERA DEL HERO (Abajo)
+      if (headerLogo) {
+        headerLogo.src = '/logo_aseofi.png';
+      }
+      
+      // Cambiar color de las líneas del menú hamburguesa
+      const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
+      hamburgerLines.forEach((line: any) => {
+        line.setAttribute('stroke', '#0d203e');
+      });
+
+
+      navLinks.forEach(link => {
+        link.classList.remove('text-white');
+        link.classList.add('text-gray-700');
+      });
+
+
+
+
+
+      if (scrollDelta > 0) {
+        // BAJANDO
+        accumulatedScrollUp = 0; 
+        navContainer.classList.remove('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
+        navContainer.classList.add('bg-transparent');
+        
+        if (navLinksContainer) {
+          navLinksContainer.classList.remove('opacity-100');
+          navLinksContainer.classList.add('opacity-0');
+          navLinksContainer.style.pointerEvents = 'none';
+        }
+      } else {
+        // SUBIENDO
+        accumulatedScrollUp += Math.abs(scrollDelta);
+
+
+
+
+
+        if (accumulatedScrollUp > SHOW_TRIGGER_DISTANCE) {
+          if (isMobile) {
+              navContainer.classList.remove('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
+              navContainer.classList.add('bg-transparent');
+          } else {
+              navContainer.classList.remove('bg-transparent');
+              navContainer.classList.add('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
+          }
+          
+          if (navLinksContainer) {
+            navLinksContainer.classList.remove('opacity-0');
+            navLinksContainer.classList.add('opacity-100');
+            navLinksContainer.style.pointerEvents = 'auto';
+          }
+        }
+      }
+    } else {
+      // DENTRO DEL HERO
+      accumulatedScrollUp = 0;
+      navContainer.classList.remove('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
+      navContainer.classList.add('bg-transparent');
+      
+      if (headerLogo) {
+        headerLogo.src = '/logo_aseofi_inverso.png';
+      }
+
+
+      // Cambiar color de las líneas del menú hamburguesa a blanco
+      const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
+      hamburgerLines.forEach((line: any) => {
+        line.setAttribute('stroke', '#ffffff');
+      });
+
+
+      navLinks.forEach(link => {
+        link.classList.add('text-white');
+        link.classList.remove('text-gray-700');
+      });
+
+
+
+
+
+      if (navLinksContainer) {
+        navLinksContainer.classList.remove('opacity-0');
+        navLinksContainer.classList.add('opacity-100');
+        navLinksContainer.style.pointerEvents = 'auto';
+      }
+    }
+
+
+
+
+
+    lastScrollY = currentScrollY;
+  };
+
+
+
+
+
+  window.addEventListener('scroll', updateHeader);
+  window.addEventListener('resize', updateHeader);
+</script>

@@ -1,22 +1,66 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+---
+import '../styles/global.css';
+import CookieBanner from '../components/CookieBanner.astro';
+import PrivacyModal from '../components/PrivacyModal.astro';
+import LegalInfoModal from '../components/LegalInfoModal.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Landing page de seguros moderna" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    
+    <link 
+      rel="preload" 
+      as="image" 
+      href="/qr-aseofi.svg" 
+      fetchpriority="high"
+    />
+    
+    <link rel="icon" type="image/png" href="/logo_aseofi_min.png" />
+  </head>
+  
+  <body class="bg-gray-50">
+    <slot />
+    
+    <!-- COOKIE BANNER -->
+    <CookieBanner />
+    
+    <!-- PRIVACY MODAL -->
+    <PrivacyModal />
+    
+    <!-- LEGAL INFO MODAL -->
+    <LegalInfoModal />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<script>
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('section').forEach((section) => {
+    observer.observe(section);
+  });
+</script>
