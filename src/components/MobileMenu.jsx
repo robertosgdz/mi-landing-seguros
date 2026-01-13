@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-
 export default function MobileMenu({ showQr = true }) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-
   useEffect(() => {
     setMounted(true);
   }, []);
-
 
   // Bloquear scroll al abrir
   useEffect(() => {
@@ -21,7 +18,6 @@ export default function MobileMenu({ showQr = true }) {
     }
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
-
 
   return (
     <>
@@ -39,7 +35,6 @@ export default function MobileMenu({ showQr = true }) {
         </svg>
       </button>
 
-
       {/* MENÚ PANTALLA COMPLETA */}
       {mounted && isOpen && createPortal(
         <div className="fixed inset-0 z-99999 flex justify-end">
@@ -49,7 +44,6 @@ export default function MobileMenu({ showQr = true }) {
             className="absolute inset-0 bg-black/20 backdrop-blur-sm animate-fadeIn"
             onClick={() => setIsOpen(false)}
           ></div>
-
 
           {/* Cajón */}
           <div className="relative w-full max-w-sm h-full bg-white shadow-2xl flex flex-col p-6 animate-slideInRight overflow-y-auto">
@@ -71,15 +65,13 @@ export default function MobileMenu({ showQr = true }) {
               </button>
             </div>
 
-
-            {/* Links */}
+            {/* Links - ACTUALIZADOS CON LOS NUEVOS ENLACES */}
             <nav className="flex flex-col space-y-6">
-              <a href="#features" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Características</a>
               <a href="#how-it-works" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Cómo funciona</a>
-              <a href="#pricing" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Precios</a>
-              <a href="#testimonials" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Testimonios</a>
+              <a href="#faq" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Preguntas</a>
+              <a href="#specialists" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Equipo</a>
+              <a href="#contact" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Contáctanos</a>
             </nav>
-
 
             {/* QR EN MOBILE MENU - SOLO SI showQr ES TRUE */}
             {showQr && (
@@ -96,7 +88,6 @@ export default function MobileMenu({ showQr = true }) {
               </div>
             )}
 
-
             {/* FOOTER - INFORMACIÓN LEGAL */}
             <div className="mt-auto pt-6 pb-4 border-t border-gray-200">
               <div className="text-center space-y-2">
@@ -107,12 +98,10 @@ export default function MobileMenu({ showQr = true }) {
               </div>
             </div>
 
-
           </div>
         </div>,
         document.body
       )}
-
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
