@@ -4,10 +4,6 @@ import '../styles/header.css';
 import MobileMenu from './MobileMenu.jsx';
 ---
 
-
-
-
-
 <!-- HEADER FIJO -->
 <header id="main-header" class="fixed top-0 left-0 w-full z-50">
   
@@ -20,14 +16,10 @@ import MobileMenu from './MobileMenu.jsx';
         <img 
           id="header-logo" 
           src="/logo_aseofi_inverso.png" 
-          alt="ASEOFI Logo" 
+          alt="aseofi Logo" 
           class="h-20 md:h-24 lg:h-20 transition-opacity duration-1000 ease-in-out"
         />
       </div>
-
-
-
-
 
       <!-- 2. ENLACES (Solo Desktop Grande) -->
       <div 
@@ -40,10 +32,6 @@ import MobileMenu from './MobileMenu.jsx';
         <a href="#contact" class="nav-link text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm">Contáctanos</a>
       </div>
 
-
-
-
-
       <!-- 3. MENÚ MÓVIL Y TABLET -->
       <div class="flex items-center shrink-0 z-20 lg:hidden scale-125">
          <MobileMenu client:only="react" />
@@ -52,157 +40,86 @@ import MobileMenu from './MobileMenu.jsx';
     </div>
   </nav>
 
-
-
-
-
 </header>
 
-
-
-
-
 <script>
-  const navContainer = document.getElementById('nav-container');
-  const navLinksContainer = document.getElementById('nav-links');
-  const headerLogo = document.getElementById('header-logo') as HTMLImageElement | null;
-  const navLinks = document.querySelectorAll('.nav-link');
+  // Esperar a que el DOM esté completamente cargado
+  document.addEventListener('DOMContentLoaded', () => {
+    const navContainer = document.getElementById('nav-container');
+    const headerLogo = document.getElementById('header-logo') as HTMLImageElement | null;
+    const navLinks = document.querySelectorAll('.nav-link');
+    const heroSection = document.querySelector('.hero-section');
+    const howitworksSection = document.getElementById('how-it-works');
 
+    // Verificar que todos los elementos existen
+    if (!navContainer || !heroSection || !howitworksSection) {
+      console.warn('Elementos no encontrados para el header observer');
+      return;
+    }
 
+    // ✅ OFFSET NEGATIVO: Ajusta este valor para cambiar dónde ocurre la transición
+    // Valores negativos = cambia ANTES (más arriba)
+    // Valores positivos = cambia DESPUÉS (más abajo)
+    const TRANSITION_OFFSET = -200; // Cambia antes de que termine el hero
 
-
-
-  let lastScrollY = window.scrollY;
-  let accumulatedScrollUp = 0; 
-
-
-
-
-
-  const threshold = window.innerHeight - 150; 
-  const SHOW_TRIGGER_DISTANCE = 200; 
-
-
-
-
-
-  const updateHeader = () => {
-    if (!navContainer) return;
-
-
-
-
-
-    const currentScrollY = window.scrollY;
-    const isMobile = window.innerWidth < 1024;
-    const scrollDelta = currentScrollY - lastScrollY; 
-
-
-
-
-
-    if (currentScrollY > threshold) {
-      // FUERA DEL HERO (Abajo)
-      if (headerLogo) {
-        headerLogo.src = '/logo_aseofi.png';
-      }
-      
-      // Cambiar color de las líneas del menú hamburguesa
-      const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
-      hamburgerLines.forEach((line: any) => {
-        line.setAttribute('stroke', '#0d203e');
-      });
-
-
-      navLinks.forEach(link => {
-        link.classList.remove('text-white');
-        link.classList.add('text-gray-700');
-      });
-
-
-
-
-
-      if (scrollDelta > 0) {
-        // BAJANDO
-        accumulatedScrollUp = 0; 
-        navContainer.classList.remove('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
-        navContainer.classList.add('bg-transparent');
-        
-        if (navLinksContainer) {
-          navLinksContainer.classList.remove('opacity-100');
-          navLinksContainer.classList.add('opacity-0');
-          navLinksContainer.style.pointerEvents = 'none';
-        }
-      } else {
-        // SUBIENDO
-        accumulatedScrollUp += Math.abs(scrollDelta);
-
-
-
-
-
-        if (accumulatedScrollUp > SHOW_TRIGGER_DISTANCE) {
-          if (isMobile) {
-              navContainer.classList.remove('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
-              navContainer.classList.add('bg-transparent');
-          } else {
-              navContainer.classList.remove('bg-transparent');
-              navContainer.classList.add('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
-          }
-          
-          if (navLinksContainer) {
-            navLinksContainer.classList.remove('opacity-0');
-            navLinksContainer.classList.add('opacity-100');
-            navLinksContainer.style.pointerEvents = 'auto';
-          }
-        }
-      }
-    } else {
-      // DENTRO DEL HERO
-      accumulatedScrollUp = 0;
+    // Función para aplicar estilos transparentes (Hero)
+    const applyTransparentHeader = () => {
       navContainer.classList.remove('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
-      navContainer.classList.add('bg-transparent');
       
       if (headerLogo) {
         headerLogo.src = '/logo_aseofi_inverso.png';
       }
-
-
-      // Cambiar color de las líneas del menú hamburguesa a blanco
-      const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
-      hamburgerLines.forEach((line: any) => {
-        line.setAttribute('stroke', '#ffffff');
-      });
-
-
+      
       navLinks.forEach(link => {
         link.classList.add('text-white');
         link.classList.remove('text-gray-700');
       });
+      
+      const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
+      hamburgerLines.forEach((line: any) => {
+        line.setAttribute('stroke', '#ffffff');
+      });
+    };
 
-
-
-
-
-      if (navLinksContainer) {
-        navLinksContainer.classList.remove('opacity-0');
-        navLinksContainer.classList.add('opacity-100');
-        navLinksContainer.style.pointerEvents = 'auto';
+    // Función para aplicar estilos semitransparentes (Después de Hero)
+    const applySemiTransparentHeader = () => {
+      navContainer.classList.add('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
+      
+      if (headerLogo) {
+        headerLogo.src = '/logo_aseofi.png';
       }
-    }
+      
+      navLinks.forEach(link => {
+        link.classList.remove('text-white');
+        link.classList.add('text-gray-700');
+      });
+      
+      const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
+      hamburgerLines.forEach((line: any) => {
+        line.setAttribute('stroke', '#0d203e');
+      });
+    };
 
+    // ✅ Detector en scroll con offset
+    const checkHeaderStyle = () => {
+      const heroBottom = heroSection.getBoundingClientRect().bottom + TRANSITION_OFFSET;
+      
+      // Si estamos dentro del hero (bottom > 0 significa que el hero aún es visible)
+      if (heroBottom > 0) {
+        applyTransparentHeader();
+      } else {
+        // Salimos del hero → aplicar semitransparente
+        applySemiTransparentHeader();
+      }
+    };
 
-
-
-
-    lastScrollY = currentScrollY;
-  };
-
-
-
-
-
-  window.addEventListener('scroll', updateHeader);
-  window.addEventListener('resize', updateHeader);
+    // Ejecutar al hacer scroll
+    window.addEventListener('scroll', checkHeaderStyle, { passive: true });
+    
+    // Ejecutar al cambiar tamaño de pantalla
+    window.addEventListener('resize', checkHeaderStyle);
+    
+    // Ejecutar inicialmente
+    checkHeaderStyle();
+  });
 </script>

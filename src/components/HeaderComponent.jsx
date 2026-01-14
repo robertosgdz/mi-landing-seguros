@@ -65,7 +65,7 @@ export default function HeaderComponent() {
               Nuevos Seguros PyME
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Ahora con ASEOFI puedes asegurar la facturación de tu pequeña empresa con tarifas reducidas y cobertura del 95%.
+              Ahora con aseofi puedes asegurar la facturación de tu pequeña empresa con tarifas reducidas y cobertura del 90%.
             </p>
           </div>
 

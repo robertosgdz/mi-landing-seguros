@@ -11,39 +11,39 @@ import React, { useState } from 'react';
 const faqData = [
   {
     // Pregunta 1: Acceso a ASEOFI
-    question: "¿Quién puede usar ASEOFI?",
+    question: "¿Quién puede usar aseofi?",
     // Del PDF: "no se discriminaría si el tomador del seguro es una gran corporación, una pyme o un autónomo"
-    answer: "Cualquier empresa, pyme o autónomo puede usar ASEOFI. No hay requisitos de facturación mínima ni obligación de asegurar toda tu cartera de clientes. Solo asegura las facturas a crédito que necesites proteger."
+    answer: "Cualquier empresa, pyme o autónomo puede usar aseofi. No hay requisitos de facturación mínima ni obligación de asegurar toda tu cartera de clientes. Solo asegura las facturas a crédito que necesites proteger."
   },
   {
     // Pregunta 2: Ventajas del modelo single-risk
-    question: "¿Por qué ASEOFI es diferente a otros seguros de crédito?",
+    question: "¿Por qué aseofi es diferente a otros seguros de crédito?",
     // Del PDF: "los seguros 'global-risk' implica tener que asegurar toda la cartera" y "single-risk permiten asegurar operaciones individuales"
-    answer: "La mayoría de seguros de crédito (global-risk) te obligan a asegurar toda tu cartera de clientes y tienen facturación mínima muy alta. ASEOFI ofrece seguros single-risk: aseguras solo las facturas individuales que quieras, sin compromisos. Ideal para pymes y autónomos."
+    answer: "La mayoría de seguros de crédito (global-risk) te obligan a asegurar toda tu cartera de clientes y tienen facturación mínima muy alta. aseofi ofrece seguros single-risk: aseguras solo las facturas individuales que quieras, sin compromisos. Ideal para pymes y autónomos."
   },
   {
     // Pregunta 3: Proceso de solicitud
     question: "¿Cuál es el proceso para asegurar una factura?",
     // Del PDF: proceso de 4 pasos (solicitud → cotización → oferta → aceptación)
-    answer: "Es muy simple: 1) Registras una solicitud con los datos del deudor y de la factura. 2) Tu solicitud entra en 'Pendiente de Cotización'. 3) Solunion prepara una oferta con el precio del seguro y el porcentaje asegurado (hasta 90%). 4) Aceptas o rechazas la oferta. Si la aceptas, comienza la contratación."
+    answer: "Es muy simple: 1) Registras una solicitud con los datos del deudor y de la factura. 2) Tu solicitud entra en 'Pendiente de Cotización'. 3) Una aseguradora de primer nivel prepara una oferta con el precio del seguro y el porcentaje asegurado (hasta 90%). 4) Aceptas o rechazas la oferta. Si la aceptas, comienza la contratación."
   },
   {
     // Pregunta 4: Cobertura del seguro
     question: "¿Hasta qué porcentaje se asegura una factura?",
     // Del PDF: "normalmente no se suele ofrecer el 100% del importe de la factura, suele ser hasta el 90%"
-    answer: "Solunion normalmente asegura hasta el 90% del importe de la factura. El porcentaje exacto depende del análisis de riesgo del deudor específico, pero ese es el máximo habitual en el mercado de seguros de crédito individual."
+    answer: "El porcentaje variará dependiendo del caso de la factura."
   },
   {
-    // Pregunta 5: ¿Quién respalda ASEOFI?
-    question: "¿Quién está detrás de ASEOFI?",
+    // Pregunta 5: ¿Quién respalda aseofi?
+    question: "¿Quién está detrás de aseofi?",
     // Del PDF: "esta aplicación forma parte o está respaldada por DIEGOCOR, correduría de seguros, S.L. con CDGS: J-3021"
-    answer: "ASEOFI forma parte de DIEGOCOR, Correduría de Seguros, S.L. (CDGS: J-3021, ubicada en Murcia, España). Somos una correduría especializada en seguros de crédito que trabaja con Solunion, una de las compañías más importantes del mundo en esta modalidad."
+    answer: "aseofi forma parte de DIEGOCOR, Correduría de Seguros, S.L. (CDGS: J-3021, ubicada en Murcia, España). Somos una correduría especializada en seguros de crédito que trabaja con una aseguradora de primer nivel, una de las compañías más importantes del mundo en esta modalidad."
   },
   {
     // Pregunta 6: ¿Cómo protege Solunion el impago?
     question: "¿Qué pasa si mi deudor no paga después de asegurar?",
     // Del PDF: "es posible que el cliente provoque un impago... una compañía de seguros, se haga cargo de compensar dicha operación"
-    answer: "Ese es exactamente el propósito del seguro de crédito. Si tu deudor no realiza el pago en el plazo acordado, Solunion se encarga de compensar la operación. El seguro protege tu flujo de caja contra el riesgo de impago y te permite seguir creciendo sin preocupaciones."
+    answer: "Ese es exactamente el propósito del seguro de crédito. Si tu deudor no realiza el pago en el plazo acordado, una aseguradora experta se encarga de compensar la operación. El seguro protege tu flujo de caja contra el riesgo de impago y te permite seguir creciendo sin preocupaciones."
   }
 ];
 

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
+
 // ============================================
 // DATOS DE CARACTERÍSTICAS (Basados en el PDF)
 // ============================================
@@ -25,7 +26,7 @@ const featuresData = [
     // Paso 2: Espera de Cotización
     title: "Espera la Cotización",
     // Del PDF: "entraría a la espera a que una asegurado, observe esa solicitud y pueda realizar una oferta de seguro"
-    short: "Tu solicitud entra en estado 'Pendiente de Cotización'. Solunion la revisa y prepara una oferta con cuota y porcentaje de aseguramiento, normalmente hasta el 90% del importe.",
+    short: "Tu solicitud entra en estado 'Pendiente de Cotización'. Una aseguradora de primer nivel la revisa y prepara una oferta con cuota y porcentaje de aseguramiento, normalmente hasta el 90% del importe.",
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -49,7 +50,7 @@ const featuresData = [
     // Paso 4: Aceptación o Rechazo
     title: "Acepta o Rechaza",
     // Del PDF: "el cliente o tomador del seguro, puede aceptar o rechazar esa solicitud, en caso de aceptarla, empezaría el proceso de contratación"
-    short: "Si aceptas la oferta, comienza el proceso de contratación con Solunion. Si la rechazas, puedes crear una nueva solicitud cuando lo necesites.",
+    short: "Si aceptas la oferta, comienza el proceso de contratación con una aseguradora de primer nivel. Si la rechazas, puedes crear una nueva solicitud cuando lo necesites.",
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.646 7.23a2 2 0 01-1.789 1.106H2a2 2 0 01-2-2V8a2 2 0 012-2h15.764a2 2 0 011.789 2.894l-1.894 3.776" />
@@ -57,6 +58,7 @@ const featuresData = [
     )
   }
 ];
+
 
 // ============================================
 // COMPONENTE REACT: CARACTERÍSTICAS SEGURAS
@@ -69,12 +71,14 @@ export default function SecureFeatures() {
   // Estado: Verifica si el componente está montado en el DOM (necesario para portal)
   const [mounted, setMounted] = useState(false);
 
+
   // ============================================
   // EFFECT 1: Marca el componente como montado (cliente-side)
   // ============================================
   useEffect(() => {
     setMounted(true);
   }, []);
+
 
   // ============================================
   // EFFECT 2: Bloquea/desbloquea el scroll del body cuando modal abre/cierra
@@ -93,6 +97,7 @@ export default function SecureFeatures() {
     // Cleanup: Restaura scroll al desmontar componente
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
+
 
 
   return (
@@ -129,10 +134,11 @@ export default function SecureFeatures() {
               </span>
             </div>
 
-            {/* ICONO DE FLECHA DERECHA (Aparece al pasar el ratón) */}
-            {/* opacity-0 group-hover:opacity-100 = Invisible por defecto, visible al hover */}
-            {/* transform group-hover:translate-x-2 = Se desplaza 8px a la derecha */}
-            <div className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-2 text-[#14549C] mt-1">
+
+            {/* ICONO DE FLECHA DERECHA (SIEMPRE VISIBLE) */}
+            {/* Removido: opacity-0 group-hover:opacity-100 */}
+            {/* Añadido: transform group-hover:translate-x-2 = se desplaza solo al hover */}
+            <div className="shrink-0 transition-all transform group-hover:translate-x-2 text-[#14549C] mt-1">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
               </svg>
@@ -141,6 +147,7 @@ export default function SecureFeatures() {
         ))}
         
       </div>
+
 
 
       {/* ============================================
@@ -179,6 +186,7 @@ export default function SecureFeatures() {
             </button>
 
 
+
             {/* ============================================
                 CONTENIDO PRINCIPAL DEL MODAL
                 ============================================ */}
@@ -186,7 +194,7 @@ export default function SecureFeatures() {
               
               {/* TÍTULO DEL MODAL */}
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-12 tracking-tight">
-                El Proceso ASEOFI Paso a Paso
+                El Proceso aseofi Paso a Paso
               </h2>
               
               {/* GRID UNIFICADO con todos los pasos explicados (Basado en PDF) */}
@@ -215,10 +223,11 @@ export default function SecureFeatures() {
                   {/* COLUMNA DERECHA: Detalles adicionales */}
                   <div className="text-base text-gray-800 leading-relaxed">
                     Tu solicitud entra inmediatamente en estado "Pendiente de Cotización". 
-                    No hay comisiones en este paso, solo aguardas a que Solunion revise tu operación.
+                    No hay comisiones en este paso, solo aguardas a que la aseguradora revise tu operación.
                   </div>
                   {/* Nota: Información del PDF sobre el flujo */}
                 </div>
+
 
 
                 {/* ============================================
@@ -233,7 +242,7 @@ export default function SecureFeatures() {
                   
                   {/* COLUMNA IZQUIERDA: Descripción de qué hace Solunion */}
                   <div className="text-base text-gray-800 leading-relaxed">
-                    Solunion analiza tu solicitud y prepara una oferta de seguro. 
+                    Una aseguradora de primer nivel analiza tu solicitud y prepara una oferta de seguro. 
                     La oferta incluye: el importe de la cuota (precio del seguro) 
                     y el porcentaje de la factura que se asegura, normalmente hasta el 90%.
                   </div>
@@ -249,6 +258,7 @@ export default function SecureFeatures() {
                 </div>
 
 
+
                 {/* ============================================
                     FILA 3: PASO 3 - REVISIÓN DE OFERTA
                     ============================================ */}
@@ -261,7 +271,7 @@ export default function SecureFeatures() {
                   
                   {/* COLUMNA IZQUIERDA: Qué ver en la oferta */}
                   <div className="text-base text-gray-800 leading-relaxed">
-                    Recibes la oferta con: la aseguradora (Solunion), el importe de la cuota, 
+                    Recibes la oferta con: la aseguradora, el importe de la cuota, 
                     el porcentaje asegurado, la fecha de la oferta y el estado ("oferta pendiente").
                   </div>
                   {/* Nota: Campos exactos del PDF en las capturas */}
@@ -272,6 +282,7 @@ export default function SecureFeatures() {
                     No hay penalizaciones por revisar múltiples ofertas o cambiar de opinión.
                   </div>
                 </div>
+
 
 
                 {/* ============================================
@@ -286,7 +297,7 @@ export default function SecureFeatures() {
                   
                   {/* COLUMNA IZQUIERDA: Aceptar */}
                   <div className="text-base text-gray-800 leading-relaxed">
-                    Si aceptas la oferta, comienza el proceso de contratación con Solunion. 
+                    Si aceptas la oferta, comienza el proceso de contratación con una aseguradora de primer nivel. 
                     Tu factura queda asegurada y protegida contra el riesgo de impago.
                   </div>
                   {/* Nota: "comienza el proceso de contratación" del PDF */}
@@ -300,8 +311,10 @@ export default function SecureFeatures() {
                 </div>
 
 
+
               </div>
               {/* Fin del grid de filas */}
+
 
             </div>
             {/* Fin del contenedor de texto */}

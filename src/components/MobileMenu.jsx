@@ -91,7 +91,7 @@ export default function MobileMenu({ showQr = true }) {
             {/* FOOTER - INFORMACIÓN LEGAL */}
             <div className="mt-auto pt-6 pb-4 border-t border-gray-200">
               <div className="text-center space-y-2">
-                <p className="text-sm font-semibold text-gray-700">© ASEOFI 2026</p>
+                <p className="text-sm font-semibold text-gray-700">© aseofi 2026</p>
                 <p className="text-xs text-gray-600">DIEGOCOR, Correduría de Seguros, S.L.</p>
                 <p className="text-xs text-gray-600">CDGS: J-3021 | Avda. Victoria, 6 Bajo</p>
                 <p className="text-xs text-gray-600">30007, Murcia, España</p>
