@@ -32,9 +32,22 @@ import MobileMenu from './MobileMenu.jsx';
         <a href="#contact" class="nav-link text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm">Contáctanos</a>
       </div>
 
-      <!-- 3. MENÚ MÓVIL Y TABLET -->
-      <div class="flex items-center shrink-0 z-20 lg:hidden scale-125">
-         <MobileMenu client:only="react" />
+      <!-- 3. BOTÓN INICIAR SESIÓN (Solo Desktop) + MENÚ MÓVIL -->
+      <div class="flex items-center shrink-0 z-20 gap-4">
+        
+        <!-- BOTÓN INICIAR SESIÓN (Desktop) -->
+        <a 
+          href="/login" 
+          class="hidden lg:inline-block login-btn text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm"
+        >
+          Iniciar sesión
+        </a>
+
+        <!-- MENÚ MÓVIL Y TABLET -->
+        <div class="flex items-center shrink-0 lg:hidden scale-125">
+          <MobileMenu client:only="react" />
+        </div>
+        
       </div>
       
     </div>
@@ -48,6 +61,7 @@ import MobileMenu from './MobileMenu.jsx';
     const navContainer = document.getElementById('nav-container');
     const headerLogo = document.getElementById('header-logo') as HTMLImageElement | null;
     const navLinks = document.querySelectorAll('.nav-link');
+    const loginBtn = document.querySelector('.login-btn');
     const heroSection = document.querySelector('.hero-section');
     const howitworksSection = document.getElementById('how-it-works');
 
@@ -74,6 +88,12 @@ import MobileMenu from './MobileMenu.jsx';
         link.classList.add('text-white');
         link.classList.remove('text-gray-700');
       });
+
+      // Aplicar estilo al botón login también
+      if (loginBtn) {
+        loginBtn.classList.add('text-white');
+        loginBtn.classList.remove('text-gray-700');
+      }
       
       const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
       hamburgerLines.forEach((line: any) => {
@@ -93,6 +113,12 @@ import MobileMenu from './MobileMenu.jsx';
         link.classList.remove('text-white');
         link.classList.add('text-gray-700');
       });
+
+      // Aplicar estilo al botón login también
+      if (loginBtn) {
+        loginBtn.classList.remove('text-white');
+        loginBtn.classList.add('text-gray-700');
+      }
       
       const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
       hamburgerLines.forEach((line: any) => {

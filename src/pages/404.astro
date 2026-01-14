@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 - Página no encontrada" description="La página que buscas no existe o ha sido movida.">
+  <main class="error-container">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-stretch ">
+        
+        <!-- COLUMNA IZQUIERDA: IMAGEN 404 -->
+        <div class="h-fit order-2 lg:order-1 lg:-ml-35 lg:max-w-sm">
+          <div class="relative rounded-2xl overflow-hidden border border-gray-100 shadow-sm h-full">
+            <div class="absolute inset-0 bg-black/5 z-10 pointer-events-none"></div>
+            <img 
+              src="/404.webp" 
+              alt="Página no encontrada 404"
+              width="600"
+              height="600"
+              loading="lazy"
+              class="w-full h-157 object-cover object-center max-h-96 lg:max-h-full"
+            />
+          </div>
+        </div>
+
+
+
+        
+        <!-- COLUMNA DERECHA: CONTENIDO -->
+        <div class="flex flex-col order-1 lg:order-2 lg:-ml-40 items-start justify-start gap-4">
+
+          
+          <div class="mb-8">
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight uppercase tracking-tighter whitespace-nowrap">
+              404 - PÁGINA NO ENCONTRADA
+            </h1>
+          </div>
+          
+          <p class="error-description">
+            Lo sentimos, la página que buscas no existe o ha sido movida a otro lugar. Esto puede ocurrir por varios motivos: la URL puede haber cambiado, la página fue eliminada o simplemente no existe en nuestro servidor. Te recomendamos volver al inicio y explorar nuestras secciones principales para encontrar lo que buscas.
+          </p>
+          
+          <div class="error-actions">
+            <a href="/" class="link-home">Volver al inicio</a>
+            <button onclick="window.location.href='/#contact'" class="btn-contact">Contactar</button>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </main>
+</Layout>
+
+
+
+<style>
+  .error-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: white;
+  }
+
+
+
+  .error-description {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+
+
+  .error-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+
+
+  @media (min-width: 640px) {
+    .error-actions {
+      flex-direction: row;
+      gap: 1.5rem;
+    }
+  }
+
+
+
+  /* Estilo del enlace "Volver al inicio" */
+  .link-home {
+    color: #6b7280;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    display: inline;
+    width: fit-content;
+  }
+
+
+
+  .link-home:hover {
+    color: #374151;
+  }
+
+
+
+  /* Estilo del botón "Contactar" */
+  .btn-contact {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: fit-content;
+    margin-top: -10px;
+  }
+
+
+
+  .btn-contact:hover {
+    background-color: #0d203e;
+  }
+
+
+
+  .btn-contact:active {
+    transform: scale(0.95);
+  }
+
+
+
+  @media (max-width: 640px) {
+    .error-description {
+      font-size: 1rem;
+    }
+
+
+
+    .error-actions {
+      gap: 0.75rem;
+    }
+
+
+
+    .link-home {
+      padding: 0.5rem 0;
+    }
+  }
+</style>
