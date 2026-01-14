@@ -25,12 +25,12 @@ const faqData = [
     // Pregunta 3: Proceso de solicitud
     question: "¿Cuál es el proceso para asegurar una factura?",
     // Del PDF: proceso de 4 pasos (solicitud → cotización → oferta → aceptación)
-    answer: "Es muy simple: 1) Registras una solicitud con los datos del deudor y de la factura. 2) Tu solicitud entra en 'Pendiente de Cotización'. 3) Una aseguradora de primer nivel prepara una oferta con el precio del seguro y el porcentaje asegurado (hasta 90%). 4) Aceptas o rechazas la oferta. Si la aceptas, comienza la contratación."
+    answer: "Es muy simple: 1) Registras una solicitud con los datos del deudor y de la factura. 2) Tu solicitud entra en 'Pendiente de Cotización'. 3) Una aseguradora de primer nivel prepara una oferta con el precio del seguro y el porcentaje asegurado. 4) Aceptas o rechazas la oferta. Si la aceptas, comienza la contratación."
   },
   {
     // Pregunta 4: Cobertura del seguro
     question: "¿Hasta qué porcentaje se asegura una factura?",
-    // Del PDF: "normalmente no se suele ofrecer el 100% del importe de la factura, suele ser hasta el 90%"
+    // Del PDF: "normalmente no se suele ofrecer el 100% del importe de la factura"
     answer: "El porcentaje variará dependiendo del caso de la factura."
   },
   {

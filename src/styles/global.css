@@ -91,10 +91,17 @@ button:hover {
   margin-bottom: 1rem;
   color: #ffffff;
   animation: fadeInUp 0.8s ease-out forwards;
+  width: 100%;      
+  max-width: 1300px;
 }
 
-
-
+/* Solo desktop (a partir de 1024px, mismo corte que lg de Tailwind) */
+@media screen and (min-width: 1024px) {
+  .hero-title {
+    width: 1500px;
+    max-width: 1500px;
+  }
+}
 
 .hero-title-word { 
   color: #ffffff; 

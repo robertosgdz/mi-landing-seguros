@@ -26,7 +26,7 @@ const featuresData = [
     // Paso 2: Espera de Cotización
     title: "Espera la Cotización",
     // Del PDF: "entraría a la espera a que una asegurado, observe esa solicitud y pueda realizar una oferta de seguro"
-    short: "Tu solicitud entra en estado 'Pendiente de Cotización'. Una aseguradora de primer nivel la revisa y prepara una oferta con cuota y porcentaje de aseguramiento, normalmente hasta el 90% del importe.",
+    short: "Tu solicitud entra en estado 'Pendiente de Cotización'. Una aseguradora de primer nivel la revisa y prepara una oferta con cuota y porcentaje de aseguramiento.",
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -244,7 +244,7 @@ export default function SecureFeatures() {
                   <div className="text-base text-gray-800 leading-relaxed">
                     Una aseguradora de primer nivel analiza tu solicitud y prepara una oferta de seguro. 
                     La oferta incluye: el importe de la cuota (precio del seguro) 
-                    y el porcentaje de la factura que se asegura, normalmente hasta el 90%.
+                    y el porcentaje de la factura que se asegura.
                   </div>
                   {/* Nota: "normalmente hasta el 90%" viene del PDF */}
                   
