@@ -56,96 +56,86 @@ import MobileMenu from './MobileMenu.jsx';
 </header>
 
 <script>
-  // Esperar a que el DOM esté completamente cargado
   document.addEventListener('DOMContentLoaded', () => {
     const navContainer = document.getElementById('nav-container');
     const headerLogo = document.getElementById('header-logo') as HTMLImageElement | null;
     const navLinks = document.querySelectorAll('.nav-link');
     const loginBtn = document.querySelector('.login-btn');
-    const heroSection = document.querySelector('.hero-section');
-    const howitworksSection = document.getElementById('how-it-works');
 
-    // Verificar que todos los elementos existen
-    if (!navContainer || !heroSection || !howitworksSection) {
-      console.warn('Elementos no encontrados para el header observer');
-      return;
-    }
+    if (!navContainer || !headerLogo) return;
 
-    // ✅ OFFSET NEGATIVO: Ajusta este valor para cambiar dónde ocurre la transición
-    // Valores negativos = cambia ANTES (más arriba)
-    // Valores positivos = cambia DESPUÉS (más abajo)
-    const TRANSITION_OFFSET = -200; // Cambia antes de que termine el hero
+    const SCROLL_THRESHOLD = 10;
 
-    // Función para aplicar estilos transparentes (Hero)
     const applyTransparentHeader = () => {
-      navContainer.classList.remove('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
-      
-      if (headerLogo) {
-        headerLogo.src = '/logo_aseofi_inverso.png';
-      }
-      
+      navContainer.classList.remove('bg-white/30','backdrop-blur-xl','shadow-lg','border-b','border-white/20');
+      headerLogo.src = '/logo_aseofi_inverso.png';
+
       navLinks.forEach(link => {
         link.classList.add('text-white');
         link.classList.remove('text-gray-700');
       });
 
-      // Aplicar estilo al botón login también
       if (loginBtn) {
         loginBtn.classList.add('text-white');
         loginBtn.classList.remove('text-gray-700');
       }
-      
+
+      // Mostrar icono blanco
+      const loginIconWhite = document.getElementById('mobile-login-icon-white');
+      const loginIconBlue = document.getElementById('mobile-login-icon-blue');
+      if (loginIconWhite) loginIconWhite.classList.remove('hidden');
+      if (loginIconBlue) loginIconBlue.classList.add('hidden');
+
       const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
       hamburgerLines.forEach((line: any) => {
         line.setAttribute('stroke', '#ffffff');
       });
     };
 
-    // Función para aplicar estilos semitransparentes (Después de Hero)
     const applySemiTransparentHeader = () => {
-      navContainer.classList.add('bg-white/30', 'backdrop-blur-xl', 'shadow-lg', 'border-b', 'border-white/20');
-      
-      if (headerLogo) {
-        headerLogo.src = '/logo_aseofi.png';
-      }
-      
+      navContainer.classList.add('bg-white/30','backdrop-blur-xl','shadow-lg','border-b','border-white/20');
+      headerLogo.src = '/logo_aseofi.png';
+
       navLinks.forEach(link => {
         link.classList.remove('text-white');
         link.classList.add('text-gray-700');
       });
 
-      // Aplicar estilo al botón login también
       if (loginBtn) {
         loginBtn.classList.remove('text-white');
         loginBtn.classList.add('text-gray-700');
       }
-      
+
+      // Mostrar icono azul
+      const loginIconWhite = document.getElementById('mobile-login-icon-white');
+      const loginIconBlue = document.getElementById('mobile-login-icon-blue');
+      if (loginIconWhite) loginIconWhite.classList.add('hidden');
+      if (loginIconBlue) loginIconBlue.classList.remove('hidden');
+
       const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
       hamburgerLines.forEach((line: any) => {
         line.setAttribute('stroke', '#0d203e');
       });
     };
 
-    // ✅ Detector en scroll con offset
     const checkHeaderStyle = () => {
-      const heroBottom = heroSection.getBoundingClientRect().bottom + TRANSITION_OFFSET;
-      
-      // Si estamos dentro del hero (bottom > 0 significa que el hero aún es visible)
-      if (heroBottom > 0) {
-        applyTransparentHeader();
-      } else {
-        // Salimos del hero → aplicar semitransparente
+      const currentScroll = window.scrollY || window.pageYOffset;
+      if (currentScroll > SCROLL_THRESHOLD) {
         applySemiTransparentHeader();
+      } else {
+        applyTransparentHeader();
       }
     };
 
-    // Ejecutar al hacer scroll
+    // Buscar los elementos en cada scroll (en caso de que React aún no los haya montado)
     window.addEventListener('scroll', checkHeaderStyle, { passive: true });
-    
-    // Ejecutar al cambiar tamaño de pantalla
     window.addEventListener('resize', checkHeaderStyle);
     
-    // Ejecutar inicialmente
-    checkHeaderStyle();
+    // Ejecutar inicialmente con un pequeño delay para que React monte
+    setTimeout(() => {
+      checkHeaderStyle();
+    }, 100);
   });
 </script>
+
+

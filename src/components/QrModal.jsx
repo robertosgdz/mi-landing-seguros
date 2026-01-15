@@ -24,23 +24,21 @@ export default function QrModal() {
 
   return (
     <>
-      {/* BOTÓN FLOTANTE */}
-      <div className="qr-button-container top-28! md:top-40!">
-        <button 
-          className="hero-btn-qr" 
-          onClick={() => setIsOpen(true)}
-          aria-label="Descargar app"
-          title="Escanea para descargar la app"
-        >
+      {/* BOTÓN - Versión sección (QR AUMENTADO) */}
+      <button 
+        className="qr-download-button" 
+        onClick={() => setIsOpen(true)}
+        aria-label="Descargar app"
+      >
+        <div className="qr-download-button-content">
           <img 
             src="/qr-aseofi.svg" 
             alt="QR para descargar app" 
-            className="qr-image"
+            className="qr-download-button-image"
             fetchpriority="high"
           />
-          <p className="qr-label">DESCARGA LA APP</p>
-        </button>
-      </div>
+        </div>
+      </button>
 
       {/* MODAL POPUP */}
       {isOpen && (
@@ -73,7 +71,6 @@ export default function QrModal() {
                   src="/qr-aseofi.svg" 
                   alt="QR para descargar app" 
                   className="w-64 h-64 object-contain rounded-lg"
-                  
                 />
               </div>
 
@@ -89,6 +86,47 @@ export default function QrModal() {
           </div>
         </div>
       )}
+
+      <style>{`
+        .qr-download-button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          transition: transform 0.3s ease;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .qr-download-button:hover {
+          transform: scale(1.05);
+        }
+
+        .qr-download-button:active {
+          transform: scale(0.95);
+        }
+
+        .qr-download-button-content {
+          position: relative;
+        }
+
+        /* TAMAÑO DEL QR AUMENTADO AQUÍ 👇 */
+        .qr-download-button-image {
+          width: 200px;
+          height: 200px;
+          object-fit: contain;
+          background: white;
+          padding: 12px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          transition: box-shadow 0.3s ease;
+        }
+
+        .qr-download-button:hover .qr-download-button-image {
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+      `}</style>
     </>
   );
 }

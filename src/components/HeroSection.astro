@@ -1,11 +1,8 @@
 ---
+// src/components/HeroSection.astro
 // IMPORTACIONES DE COMPONENTES REACT
 import ScrollReveal from './ScrollReveal.jsx';
-import QrModal from './QrModal.jsx';
 ---
-
-
-
 
 <section class="hero-section w-full relative">
   
@@ -26,22 +23,13 @@ import QrModal from './QrModal.jsx';
   <!-- Fallback para navegadores antiguos -->
 </video>
 
-
-
-
   <!-- Nota: hidden lg:block = no se ve en móvil/tablet, solo en desktop (lg+) -->
-
-
-
 
   <!-- ============================================
        2. OVERLAY OSCURO (Legibilidad del texto)
        ============================================ -->
   <div class="hero-overlay absolute inset-0 w-full h-full z-1"></div>
   <!-- Nota: z-1 = capa intermedia entre video (z-0) y contenido (z-10) -->
-
-
-
 
   <!-- ============================================
        3. CONTENIDO PRINCIPAL (Texto + CTA)
@@ -57,72 +45,25 @@ import QrModal from './QrModal.jsx';
       TU SIGUES CRECIENDO
       </h1>
 
-       
-      </h1>
-      <!-- Nota: 
-        - text-2xl (móvil: 24px)
-        - sm:text-5xl (pequeño: 48px)
-        - md:text-7xl (tablet: 48px) - AUMENTADO A MÁXIMO
-        - lg:text-7xl (desktop: 48px)
-        - ! = !important (para forzar tamaños sin que CSS de componentes los sobrescriba)
-        - leading-tight = espaciado de líneas compacto para impacto visual
-        - hero-title-word/highlight = clases personalizadas para colores/estilos
-      -->
-
-
-
-
       <!-- SUBTÍTULO (Explicación) -->
-      <!-- text-lg = 18px móvil | md:text-2xl = 24px tablet (AUMENTADO) -->
-      <!-- max-w-3xl ancho máximo (legibilidad de párrafo) -->
       <p class="hero-subtitle text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
-        Asegura su factura u operación de forma individual con seguros single-risk. 
-        Sin mínimos de facturación, sin comprometer toda tu cartera. 
+        Asegure su factura u operación de forma individual con seguros single-risk.<br>
+        Sin mínimos de facturación, sin comprometer toda tu cartera, sin trámites complicados.
         <strong>Solicita cotización en minutos</strong> y recibe ofertas de una aseguradora 
         de primer nivel.
       </p>
-      <!-- Nota:
-        - text-lg = 18px móvil
-        - md:text-2xl = 24px tablet (AUMENTADO)
-        - lg:text-xl = 20px desktop
-        - max-w-2xl = ancho máximo 672px (legibilidad de párrafo)
-        - leading-relaxed = altura de línea generosa para lectura cómoda
-        - <strong> = énfasis en el CTA suave ("Solicita cotización")
-      -->
       
     </ScrollReveal>
   </div>
 
-
-
-
   <!-- ============================================
-       4. MODAL DE QR (Flotante - SOLO DESKTOP)
-       ============================================ -->
-  <div class="hidden lg:block">
-    <QrModal client:only="react" />
-  </div>
-  <!-- Nota: client:only="react" = Este componente solo se renderiza en el cliente (interactivo) -->
-
-
-
-
-  <!-- ============================================
-       5. BOTÓN SECUNDARIO (Derecha)
+       4. BOTÓN SECUNDARIO (Derecha)
        ============================================ -->
   <div class="hero-buttons-right">
     <a href="#contact" class="hero-btn-secondary-right hero-btn">
       HABLA CON UN ESPECIALISTA
     </a>
   </div>
-  <!-- Nota:
-    - Botón flotante a la derecha (CTA secundario)
-    - href="#contact" = scroll suave a sección de contacto
-    - hero-btn = Clase adicional para que el script pueda detectarlo
-  -->
-
-
-
 
 </section>
 

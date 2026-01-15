@@ -50,7 +50,7 @@ const featuresData = [
     // Paso 4: Aceptación o Rechazo
     title: "Acepta o Rechaza",
     // Del PDF: "el cliente o tomador del seguro, puede aceptar o rechazar esa solicitud, en caso de aceptarla, empezaría el proceso de contratación"
-    short: "Si aceptas la oferta, comienza el proceso de contratación con una aseguradora de primer nivel. Si la rechazas, puedes crear una nueva solicitud cuando lo necesites.",
+    short: "Si aceptas la oferta, comienza el proceso de contratación. Si la rechazas, puedes crear una nueva solicitud cuando lo necesites.",
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.646 7.23a2 2 0 01-1.789 1.106H2a2 2 0 01-2-2V8a2 2 0 012-2h15.764a2 2 0 011.789 2.894l-1.894 3.776" />
@@ -297,7 +297,7 @@ export default function SecureFeatures() {
                   
                   {/* COLUMNA IZQUIERDA: Aceptar */}
                   <div className="text-base text-gray-800 leading-relaxed">
-                    Si aceptas la oferta, comienza el proceso de contratación con una aseguradora de primer nivel. 
+                    Si aceptas la oferta, comienza el proceso de contratación. 
                     Tu factura queda asegurada y protegida contra el riesgo de impago.
                   </div>
                   {/* Nota: "comienza el proceso de contratación" del PDF */}

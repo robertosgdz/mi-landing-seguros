@@ -5,10 +5,10 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="404 - Página no encontrada" description="La página que buscas no existe o ha sido movida.">
   <main class="error-container">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-stretch ">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-start lg:items-stretch">
         
         <!-- COLUMNA IZQUIERDA: IMAGEN 404 -->
-        <div class="h-fit order-2 lg:order-1 lg:-ml-35 lg:max-w-sm">
+          <div class="h-fit order-2 lg:order-1 lg:-ml-35 lg:max-w-sm md:h-160 lg:h-auto">
           <div class="relative rounded-2xl overflow-hidden border border-gray-100 shadow-sm h-full">
             <div class="absolute inset-0 bg-black/5 z-10 pointer-events-none"></div>
             <img 
@@ -17,20 +17,16 @@ import Layout from '../layouts/Layout.astro';
               width="600"
               height="600"
               loading="lazy"
-              class="w-full h-157 object-cover object-center max-h-96 lg:max-h-full"
+              class="w-full object-cover object-center max-h-96 md:max-h-full lg:max-h-full"
             />
           </div>
         </div>
 
-
-
-        
         <!-- COLUMNA DERECHA: CONTENIDO -->
-        <div class="flex flex-col order-1 lg:order-2 lg:-ml-40 items-start justify-start gap-4">
-
+        <div class="flex flex-col order-1 lg:order-2 lg:-ml-40 items-start justify-start gap-4 md:-mt-10 lg:mt-0">
           
-          <div class="mb-8">
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight uppercase tracking-tighter whitespace-nowrap">
+          <div class="mb-8 w-full">
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight uppercase tracking-tighter">
               404 - PÁGINA NO ENCONTRADA
             </h1>
           </div>
@@ -45,14 +41,10 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-
-
       </div>
     </div>
   </main>
 </Layout>
-
-
 
 <style>
   .error-container {
@@ -64,8 +56,6 @@ import Layout from '../layouts/Layout.astro';
     background-color: white;
   }
 
-
-
   .error-description {
     font-size: 1.125rem;
     color: #6b7280;
@@ -74,15 +64,11 @@ import Layout from '../layouts/Layout.astro';
     max-width: 100%;
   }
 
-
-
   .error-actions {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-
-
 
   @media (min-width: 640px) {
     .error-actions {
@@ -90,8 +76,6 @@ import Layout from '../layouts/Layout.astro';
       gap: 1.5rem;
     }
   }
-
-
 
   /* Estilo del enlace "Volver al inicio" */
   .link-home {
@@ -104,13 +88,9 @@ import Layout from '../layouts/Layout.astro';
     width: fit-content;
   }
 
-
-
   .link-home:hover {
     color: #374151;
   }
-
-
 
   /* Estilo del botón "Contactar" */
   .btn-contact {
@@ -128,35 +108,41 @@ import Layout from '../layouts/Layout.astro';
     margin-top: -10px;
   }
 
-
-
   .btn-contact:hover {
     background-color: #0d203e;
   }
-
-
 
   .btn-contact:active {
     transform: scale(0.95);
   }
 
-
+  @media (max-width: 1024px) {
+    /* En tablet y móvil, quitamos los márgenes negativos */
+    .grid > div:nth-child(2) {
+      margin-left: 0;
+    }
+  }
 
   @media (max-width: 640px) {
     .error-description {
       font-size: 1rem;
     }
 
-
-
     .error-actions {
       gap: 0.75rem;
     }
 
-
-
     .link-home {
       padding: 0.5rem 0;
+    }
+
+    /* En móvil, la imagen aparece primero */
+    .order-1 {
+      order: 2;
+    }
+
+    .order-2 {
+      order: 1;
     }
   }
 </style>
