@@ -17,12 +17,11 @@ import ScrollReveal from './ScrollReveal.jsx';
   loop 
   muted 
   playsinline
-  preload="metadata"
-  poster="/hero-bg-desktop.jpg"
+  preload="none"
 >
   <source src="/hero-bg-desktop.mp4" type="video/mp4" />
-  <!-- Fallback para navegadores antiguos -->
 </video>
+
 
 
   <!-- Nota: hidden lg:block = no se ve en móvil/tablet, solo en desktop (lg+) -->
@@ -41,7 +40,7 @@ import ScrollReveal from './ScrollReveal.jsx';
   <div class="hero-content max-w-7xl mx-auto px-4 relative z-10 pt-200 md:pt-56 lg:pt-48">
     
     <!-- ScrollReveal: Anima el contenido al scrollear -->
-    <ScrollReveal client:only="react">
+    <ScrollReveal client:idle>
       
       <!-- TITULAR PRINCIPAL (H1) -->
       <h1 class="hero-title -mt-6 md:-mt-0 text-2xl! sm:text-5xl! md:text-7xl! lg:text-7xl! leading-tight!">
@@ -85,7 +84,7 @@ import ScrollReveal from './ScrollReveal.jsx';
 
 
 <!-- SCRIPT PARA DETECTAR POSICIÓN DEL BOTÓN -->
-<script>
+<script is:inline defer>
   const updateButtonStyle = () => {
     const heroBtn = document.querySelector('.hero-btn-secondary-right');
     const heroSection = document.querySelector('.hero-section');

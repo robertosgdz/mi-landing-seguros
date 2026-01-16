@@ -15,7 +15,7 @@ import MobileMenu from './MobileMenu.jsx';
       <div class="flex items-center shrink-0 z-20">
         <img 
           id="header-logo" 
-          src="/logo_aseofi_inverso.png" 
+          src="/logo_aseofi_inverso.webp" 
           alt="aseofi Logo" 
           class="h-20 md:h-24 lg:h-20 transition-opacity duration-1000 ease-in-out"
         />
@@ -68,7 +68,7 @@ import MobileMenu from './MobileMenu.jsx';
 
     const applyTransparentHeader = () => {
       navContainer.classList.remove('bg-white/30','backdrop-blur-xl','shadow-lg','border-b','border-white/20');
-      headerLogo.src = '/logo_aseofi_inverso.png';
+      headerLogo.src = '/logo_aseofi_inverso.webp';
 
       navLinks.forEach(link => {
         link.classList.add('text-white');
@@ -94,7 +94,7 @@ import MobileMenu from './MobileMenu.jsx';
 
     const applySemiTransparentHeader = () => {
       navContainer.classList.add('bg-white/30','backdrop-blur-xl','shadow-lg','border-b','border-white/20');
-      headerLogo.src = '/logo_aseofi.png';
+      headerLogo.src = '/logo_aseofi.webp';
 
       navLinks.forEach(link => {
         link.classList.remove('text-white');

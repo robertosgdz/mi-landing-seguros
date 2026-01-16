@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/animations.css';
 import CookieBanner from '../components/CookieBanner.astro';
 import PrivacyModal from '../components/PrivacyModal.astro';
 import LegalInfoModal from '../components/LegalInfoModal.astro';
@@ -19,6 +20,327 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    
+    <!-- CSS CRÍTICO INLINADO - NO BLOQUEA RENDERIZADO -->
+    <style is:global>
+    @import "tailwindcss";
+
+
+      /* ===== GLOBAL ===== */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      * {
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      body {
+        background-color: #f9fafb;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      button {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+      }
+
+      /* ===== HERO SECTION ===== */
+      .hero-section {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 125vh;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background-image: url('/hero-bg-mobile.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-color: #14549C;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: hsla(217, 65%, 15%, 0.30);
+      }
+
+      /* CONTENIDO PRINCIPAL */
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        text-align: left;
+      }
+
+      .hero-list {
+        list-style: disc;
+        padding-left: 1.5rem;
+        color: #ffffff;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        margin: -1.5rem 0 0 0;
+      }
+
+      .hero-list li {
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-title {
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        color: #ffffff;
+        animation: fadeInUp 0.8s ease-out forwards;
+        width: 100%;      
+        max-width: 1300px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        .hero-title {
+          width: 1500px;
+          max-width: 1500px;
+        }
+      }
+        
+      .hero-title-word { 
+        color: #ffffff; 
+      }
+
+      .hero-title-highlight { 
+        color: #14549C; 
+      }
+
+      .hero-subtitle {
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        color: #ffffff;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        animation: fadeInUp 0.8s ease-out 0.2s backwards;
+      }
+
+      /* ===== BOTÓN ESPECIALISTA (Botón Flotante) ===== */
+      .hero-buttons-right {
+        position: fixed;
+        bottom: 2rem;
+        z-index: 40;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-btn-secondary-right {
+        padding: 0.875rem 2rem;
+        border-radius: 0.75rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        border: 2px solid #ffffff;
+        background-color: rgba(36, 26, 71, 0.5);
+        backdrop-filter: blur(4px);
+        color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        white-space: nowrap;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .hero-btn-secondary-right:hover {
+        background-color: rgba(13, 32, 62, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-color: rgba(255, 255, 255, 0.8);
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-btn-secondary-right.btn-light {
+        color: #ffffff;
+      }
+
+      .hero-btn-secondary-right.btn-light:hover {
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+
+      /* ===== CONTENEDOR QR ===== */
+      .qr-button-container {
+        position: fixed;
+        top: 7rem;
+        right: 2rem;
+        z-index: 40;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-btn-qr {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s ease;
+      }
+
+      .hero-btn-qr:hover { 
+        transform: scale(1.05); 
+      }
+
+      .hero-btn-qr:active { 
+        transform: scale(0.95); 
+      }
+
+      .qr-image {
+        width: 150px;
+        height: 140px;
+        object-fit: contain;
+        background: white;
+        padding: 8px;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      }
+
+      .qr-label {
+        font-size: 0.8rem;
+        font-weight: 800;
+        color: #0d203e;
+        background-color: #ffffff;
+        padding: 0.5rem 1rem;
+        border-radius: 0.75rem;
+        margin-top: 0.2rem;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      }
+
+      /* ========================================= */
+      /* ============ MEDIA QUERIES ============== */
+      /* ========================================= */
+
+      @media (min-width: 641px) and (max-width: 1023px) {
+        .qr-image {
+          width: 200px !important;
+          height: 200px !important;
+        }
+
+        .qr-label {
+          font-size: 1rem !important;
+          padding: 1rem 1.75rem !important;
+        }
+
+        .hero-buttons-right {
+          left: 50%;
+          transform: translateX(-50%);
+          right: auto;
+          bottom: 2rem;
+          width: auto;
+        }
+        
+        .hero-section {
+          align-items: center;
+          background-position: center -80px;
+        }
+
+        .hero-content {
+          padding-left: 2rem !important; 
+          padding-right: 2rem !important;
+          padding-top: 0rem !important;
+        }
+
+        .qr-button-container {
+          display: flex;
+          top: 6.5rem;
+          right: 1.5rem;
+          transform: scale(0.85);
+          transform-origin: top right;
+        }
+
+        .hero-btn-secondary-right {
+          padding: 1rem 5rem !important;
+          font-size: 2rem !important;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-buttons-right {
+          left: 50%;
+          transform: translateX(-50%);
+          right: auto;
+          bottom: 2rem;
+          width: auto;
+        }
+        
+        .hero-section {
+          align-items: center;
+          background-position: center -00px;
+        }
+
+        .hero-content {
+          padding-left: 1.5rem !important; 
+          padding-right: 1.5rem !important;
+          padding-top: 1rem !important; 
+        }
+
+        .qr-button-container {
+          display: flex;
+          top: 6rem;
+          right: 1rem;
+          transform: scale(0.7);
+          transform-origin: top right;
+        }
+
+        .hero-btn-secondary-right {
+          padding: 1rem 2.5rem !important;
+          font-size: 1rem !important;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .hero-section {
+          background-position: center 1rem;
+        }
+
+        .hero-content {
+          margin-left: 3rem !important;
+          max-width: 1200px;
+        }
+
+        .hero-buttons-right {
+          right: 3rem;
+          bottom: 3rem;
+          left: auto;
+          transform: none;
+          align-items: flex-end;
+        }
+      }
+
+      #specialistBtn {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        font-size: 1rem !important;
+        line-height: 1;
+        width: auto !important;
+        max-width: fit-content !important;
+      }
+    </style>
+    
+    <!-- CSS NO-CRÍTICO CARGADO ASÍNCRONO -->
+    <link rel="stylesheet" href="../styles/global.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="../styles/global.css"></noscript>
     
     <link 
       rel="preload" 

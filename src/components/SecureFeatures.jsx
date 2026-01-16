@@ -68,7 +68,7 @@ export default function SecureFeatures() {
   // Estado: Controla si el modal está abierto (true) o cerrado (false)
   const [isOpen, setIsOpen] = useState(false);
   
-  // Estado: Verifica si el componente está montado en el DOM (necesario para portal)
+  // Estado: Verifica si el cozmponente está montado en el DOM (necesario para portal)
   const [mounted, setMounted] = useState(false);
 
 
