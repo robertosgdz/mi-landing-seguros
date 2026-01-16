@@ -82,6 +82,19 @@ button:hover {
   text-align: left;
 }
 
+.hero-list {
+  list-style: disc;
+  padding-left: 1.5rem;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+  margin: -1.5rem 0 0 0;
+}
+
+.hero-list li {
+  margin-bottom: 0.5rem;
+}
+
 
 
 

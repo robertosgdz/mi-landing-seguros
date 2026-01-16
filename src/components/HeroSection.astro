@@ -4,6 +4,7 @@
 import ScrollReveal from './ScrollReveal.jsx';
 ---
 
+
 <section class="hero-section w-full relative">
   
   <!-- ============================================
@@ -23,13 +24,16 @@ import ScrollReveal from './ScrollReveal.jsx';
   <!-- Fallback para navegadores antiguos -->
 </video>
 
+
   <!-- Nota: hidden lg:block = no se ve en móvil/tablet, solo en desktop (lg+) -->
+
 
   <!-- ============================================
        2. OVERLAY OSCURO (Legibilidad del texto)
        ============================================ -->
   <div class="hero-overlay absolute inset-0 w-full h-full z-1"></div>
   <!-- Nota: z-1 = capa intermedia entre video (z-0) y contenido (z-10) -->
+
 
   <!-- ============================================
        3. CONTENIDO PRINCIPAL (Texto + CTA)
@@ -40,21 +44,32 @@ import ScrollReveal from './ScrollReveal.jsx';
     <ScrollReveal client:only="react">
       
       <!-- TITULAR PRINCIPAL (H1) -->
-      <h1 class="hero-title text-2xl! sm:text-5xl! md:text-7xl! lg:text-7xl! leading-tight!">
+      <h1 class="hero-title -mt-6 md:-mt-0 text-2xl! sm:text-5xl! md:text-7xl! lg:text-7xl! leading-tight!">
       CADA OPERACIÓN ESTÁ PROTEGIDA<br>
       TU SIGUES CRECIENDO
       </h1>
 
+
       <!-- SUBTÍTULO (Explicación) -->
-      <p class="hero-subtitle text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
-        Asegure su factura u operación de forma individual con seguros single-risk.<br>
-        Sin mínimos de facturación, sin comprometer toda tu cartera, sin trámites complicados.
-        <strong>Solicita cotización en minutos</strong> y recibe ofertas de una aseguradora 
-        de primer nivel.
-      </p>
+<p class="hero-subtitle -mt-4 md:-mt-0 text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
+  Asegure su factura/operación de forma individual.
+</p>
+<ul class="hero-list text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
+  <li>Sin mínimos de facturación</li>
+  <li>Sin comprometer toda tu cartera</li>
+  <li>Solicita una cotización rápida y sencilla</li>
+</ul>
+<p class="hero-subtitle text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
+  <strong>Solicita cotización en minutos</strong> y recibe ofertas de una ASEGURADORA 
+  de primer nivel.
+</p>
+
+
+
       
     </ScrollReveal>
   </div>
+
 
   <!-- ============================================
        4. BOTÓN SECUNDARIO (Derecha)
@@ -65,7 +80,9 @@ import ScrollReveal from './ScrollReveal.jsx';
     </a>
   </div>
 
+
 </section>
+
 
 <!-- SCRIPT PARA DETECTAR POSICIÓN DEL BOTÓN -->
 <script>
@@ -74,14 +91,17 @@ import ScrollReveal from './ScrollReveal.jsx';
     const heroSection = document.querySelector('.hero-section');
     const footer = document.querySelector('footer');
 
+
     if (!heroBtn || !heroSection || !footer) {
       console.warn('Elementos no encontrados');
       return;
     }
 
+
     const btnRect = heroBtn.getBoundingClientRect();
     const heroRect = heroSection.getBoundingClientRect();
     const footerRect = footer.getBoundingClientRect();
+
 
     // Calcular si está dentro del hero (incluyendo parte oculta)
     const isInHero = btnRect.top < heroRect.bottom && btnRect.bottom > heroRect.top;
@@ -89,7 +109,9 @@ import ScrollReveal from './ScrollReveal.jsx';
     // Calcular si está dentro del footer
     const isInFooter = btnRect.top < footerRect.bottom && btnRect.bottom > footerRect.top;
 
+
     console.log('isInHero:', isInHero, 'isInFooter:', isInFooter);
+
 
     if (isInHero || isInFooter) {
       if (!heroBtn.classList.contains('btn-light')) {
@@ -104,6 +126,7 @@ import ScrollReveal from './ScrollReveal.jsx';
     }
   };
 
+
   // Esperar a que el DOM esté completamente cargado
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -112,6 +135,7 @@ import ScrollReveal from './ScrollReveal.jsx';
   } else {
     updateButtonStyle();
   }
+
 
   // Ejecutar en cada scroll
   window.addEventListener('scroll', updateButtonStyle, { passive: true });

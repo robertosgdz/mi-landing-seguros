@@ -223,7 +223,7 @@ export default function SecureFeatures() {
                   {/* COLUMNA DERECHA: Detalles adicionales */}
                   <div className="text-base text-gray-800 leading-relaxed">
                     Tu solicitud entra inmediatamente en estado "Pendiente de Cotización". 
-                    No hay comisiones en este paso, solo aguardas a que la aseguradora revise tu operación.
+                    No hay costes en este paso, solo aguardas a que la aseguradora revise tu operación.
                   </div>
                   {/* Nota: Información del PDF sobre el flujo */}
                 </div>
@@ -243,7 +243,7 @@ export default function SecureFeatures() {
                   {/* COLUMNA IZQUIERDA: Descripción de qué hace Solunion */}
                   <div className="text-base text-gray-800 leading-relaxed">
                     Una aseguradora de primer nivel analiza tu solicitud y prepara una oferta de seguro. 
-                    La oferta incluye: el importe de la cuota (precio del seguro) 
+                    La oferta incluye las condiciones de aseguramiento: el importe de la cuota (precio del seguro) 
                     y el porcentaje de la factura que se asegura.
                   </div>
                   {/* Nota: "normalmente hasta el 90%" viene del PDF */}
@@ -251,8 +251,7 @@ export default function SecureFeatures() {
                   {/* COLUMNA DERECHA: Contexto sobre la oferta */}
                   <div className="text-base text-gray-800 leading-relaxed">
                     La oferta se calcula basándose en el perfil de riesgo del deudor. 
-                    Como empresa o autónomo, no estás obligado a asegurar toda tu cartera: 
-                    solo las operaciones que realmente te interesen.
+                    Como empresa o autónomo, en aseofi, no estás obligado a asegurar toda tu cartera.
                   </div>
                   {/* Nota: "no estás obligado" es la ventaja clave del single-risk del PDF */}
                 </div>
@@ -272,7 +271,7 @@ export default function SecureFeatures() {
                   {/* COLUMNA IZQUIERDA: Qué ver en la oferta */}
                   <div className="text-base text-gray-800 leading-relaxed">
                     Recibes la oferta con: la aseguradora, el importe de la cuota, 
-                    el porcentaje asegurado, la fecha de la oferta y el estado ("oferta pendiente").
+                    el porcentaje asegurado, la fecha de la oferta y el estado.
                   </div>
                   {/* Nota: Campos exactos del PDF en las capturas */}
                   

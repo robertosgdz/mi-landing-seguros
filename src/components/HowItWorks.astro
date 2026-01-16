@@ -65,6 +65,7 @@ import SecureFeatures from '../components/SecureFeatures.jsx';
       </div>
 
 
+
       <!-- ============================================
            COLUMNA DERECHA: CONTENIDO EXPLICATIVO
            ============================================ -->
@@ -94,6 +95,7 @@ import SecureFeatures from '../components/SecureFeatures.jsx';
         </div>
 
 
+
         <!-- COMPONENTE REACT: CARACTERÍSTICAS Y FLUJO -->
         <SecureFeatures client:only="react" />
         <!-- Nota:
@@ -102,242 +104,12 @@ import SecureFeatures from '../components/SecureFeatures.jsx';
         -->
 
 
+
       </div>
+
 
 
     </div>
-
-
-    <!-- ============================================
-         SECCIÓN: EDUCATIVA - SINGLE-RISK vs GLOBAL-RISK
-         (PEGADO A LA IZQUIERDA MÁXIMO)
-         ============================================ -->
-    <!-- w-screen = Ocupa todo el ancho de la pantalla -->
-    <!-- -ml-4 = Margen izquierdo negativo para compensar el padding del contenedor padre -->
-    <!-- lg:-ml-35 = Más negativo en desktop (pega más) -->
-    <!-- pl-4 = Padding izquierdo para móvil -->
-    <!-- lg:pl-16.5 = Padding izquierdo en desktop (alineado con otras secciones pegadas) -->
-    <!-- pr-4 = Padding derecho para móvil -->
-    <!-- lg:pr-0 = Sin padding derecho en desktop -->
-    <!-- py-16 md:py-20 = Padding vertical reducido -->
-    <div class="w-screen -ml-4 lg:-ml-35 pl-4 lg:pl-16.5 pr-4 lg:pr-0 py-16 md:py-20">
-      
-      <!-- TÍTULO PRINCIPAL -->
-      <!-- mb-12 md:mb-16 = Margen inferior responsivo -->
-      <div class="mb-12 md:mb-16">
-        <h2 class="text-5xl md:text-7xl font-bold text-gray-900 tracking-tight">
-          SINGLE-RISK VS GLOBAL-RISK
-        </h2>
-        <!-- Nota:
-          - text-5xl md:text-7xl = Tamaño grande (60px → 48px en desktop)
-          - font-bold = Peso 700
-          - text-gray-900 = Negro oscuro
-          - tracking-tight = Espaciado compacto entre letras
-          - MAYÚSCULAS para impacto visual
-        -->
-      </div>
-
-
-      <!-- CONTENEDOR DE CONTENIDO (Ancho máximo 6xl) -->
-      <!-- max-w-6xl = Ancho máximo 1152px -->
-      <div class="max-w-6xl">
-        
-        <!-- CONTENEDOR DE PÁRRAFOS -->
-        <!-- space-y-6 = Espaciado vertical 24px entre párrafos -->
-        <div class="space-y-6 mb-12">
-          
-          <!-- PÁRRAFO INTRODUCTORIO -->
-          <!-- text-xl = 20px (coherente con features) -->
-          <!-- text-gray-700 = Gris oscuro -->
-          <!-- leading-relaxed = Altura generosa (1.625) -->
-          <p class="text-xl text-gray-700 leading-relaxed">
-            En el mercado de seguros de crédito existen dos enfoques completamente diferentes. 
-            aseofi se basa en seguros <span class="font-semibold">single-risk</span>, 
-            una alternativa mucho más flexible que el modelo tradicional <span class="font-semibold">global-risk</span>.
-          </p>
-          <!-- Nota:
-            - text-xl = 20px (mismo tamaño que features data)
-            - Introducción al tema
-            - Destaca los dos conceptos clave con semibold
-          -->
-
-
-        </div>
-
-
-        <!-- CONTENEDOR DE COMPARACIÓN (2 columnas en desktop) -->
-        <!-- grid grid-cols-1 md:grid-cols-2 = 1 columna móvil, 2 columnas desktop -->
-        <!-- gap-8 = Espaciado 32px entre columnas -->
-        <!-- mb-8 = Margen inferior reducido -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          
-          <!-- COLUMNA 1: GLOBAL-RISK (Lo tradicional, lo que no queremos) -->
-          <!-- border border-red-200 = Borde rojo claro -->
-          <!-- bg-red-50 = Fondo rojo muy claro -->
-          <!-- p-6 = Padding 24px -->
-          <!-- rounded-lg = Esquinas redondeadas -->
-          <div class="border border-red-200 bg-red-50 p-6 rounded-lg">
-            
-            <!-- TÍTULO DEL BLOQUE -->
-            <!-- text-xl font-bold = Tamaño 20px, peso 700 -->
-            <!-- text-red-800 = Rojo oscuro -->
-            <!-- mb-4 = Margen inferior 16px -->
-            <h4 class="text-xl font-bold text-red-800 mb-4">
-              GLOBAL-RISK
-            </h4>
-            <!-- Nota:
-              - Nombre del modelo tradicional
-              - Color rojo para representar restricciones
-              - MAYÚSCULAS
-            -->
-
-
-            <!-- LISTA DE CARACTERÍSTICAS (Lo negativo) -->
-            <!-- space-y-2 = Espaciado vertical 8px entre items -->
-            <!-- text-xl = 20px (coherente con párrafos) -->
-            <ul class="space-y-2 text-xl text-gray-700">
-              
-              <!-- Item 1 -->
-              <li class="flex items-start gap-2">
-                <span class="text-red-600 font-bold mt-1">✗</span>
-                <span>Obligatorio asegurar <span class="font-semibold">toda tu cartera</span> de clientes</span>
-              </li>
-              <!-- Nota:
-                - Símbolo ✗ en rojo (negativo)
-                - Destaca la principal limitación
-              -->
-
-
-              <!-- Item 2 -->
-              <li class="flex items-start gap-2">
-                <span class="text-red-600 font-bold mt-1">✗</span>
-                <span>Requiere <span class="font-semibold">facturación mínima</span> muy alta</span>
-              </li>
-              <!-- Nota:
-                - Barrera de entrada para pymes/autónomos
-              -->
-
-
-              <!-- Item 3 -->
-              <li class="flex items-start gap-2">
-                <span class="text-red-600 font-bold mt-1">✗</span>
-                <span>Solo accesible para <span class="font-semibold">grandes corporaciones</span></span>
-              </li>
-              <!-- Nota:
-                - Exclusión de pequeños negocios
-              -->
-
-
-              <!-- Item 4 -->
-              <li class="flex items-start gap-2">
-                <span class="text-red-600 font-bold mt-1">✗</span>
-                <span>Compromiso a <span class="font-semibold">largo plazo</span></span>
-              </li>
-              <!-- Nota:
-                - Falta de flexibilidad
-              -->
-            </ul>
-            <!-- Fin de lista -->
-          </div>
-          <!-- Fin de columna Global-Risk -->
-
-
-          <!-- COLUMNA 2: SINGLE-RISK (Lo nuevo, lo que ASEOFI ofrece) -->
-          <!-- border border-green-200 = Borde verde claro -->
-          <!-- bg-green-50 = Fondo verde muy claro -->
-          <!-- p-6 = Padding 24px -->
-          <!-- rounded-lg = Esquinas redondeadas -->
-          <div class="border border-green-200 bg-green-50 p-6 rounded-lg">
-            
-            <!-- TÍTULO DEL BLOQUE -->
-            <!-- text-xl font-bold = Tamaño 20px, peso 700 -->
-            <!-- text-green-800 = Verde oscuro -->
-            <!-- mb-4 = Margen inferior 16px -->
-            <h4 class="text-xl font-bold text-green-800 mb-4">
-              SINGLE-RISK (aseofi)
-            </h4>
-            <!-- Nota:
-              - Nombre del modelo de aseofi
-              - Color verde para representar beneficios/solución
-              - MAYÚSCULAS
-            -->
-
-
-            <!-- LISTA DE CARACTERÍSTICAS (Lo positivo) -->
-            <!-- space-y-2 = Espaciado vertical 8px entre items -->
-            <!-- text-xl = 20px (coherente con párrafos) -->
-            <ul class="space-y-2 text-xl text-gray-700">
-              
-              <!-- Item 1 -->
-              <li class="flex items-start gap-2">
-                <span class="text-green-600 font-bold mt-1">✓</span>
-                <span>Asegura <span class="font-semibold">solo las facturas que necesites</span></span>
-              </li>
-              <!-- Nota:
-                - Símbolo ✓ en verde (positivo)
-                - Principal ventaja: libertad de elección
-              -->
-
-
-              <!-- Item 2 -->
-              <li class="flex items-start gap-2">
-                <span class="text-green-600 font-bold mt-1">✓</span>
-                <span><span class="font-semibold">Sin requisitos mínimos</span> de facturación</span>
-              </li>
-              <!-- Nota:
-                - Accesible para todos los tamaños
-              -->
-
-
-              <!-- Item 3 -->
-              <li class="flex items-start gap-2">
-                <span class="text-green-600 font-bold mt-1">✓</span>
-                <span>Para <span class="font-semibold">pymes, autónomos y grandes empresas</span></span>
-              </li>
-              <!-- Nota:
-                - Inclusividad del modelo
-              -->
-
-
-              <!-- Item 4 -->
-              <li class="flex items-start gap-2">
-                <span class="text-green-600 font-bold mt-1">✓</span>
-                <span><span class="font-semibold">Total flexibilidad</span> sin compromisos</span>
-              </li>
-              <!-- Nota:
-                - Libertad y adaptabilidad
-              -->
-            </ul>
-            <!-- Fin de lista -->
-          </div>
-          <!-- Fin de columna Single-Risk -->
-
-
-        </div>
-        <!-- Fin del grid de comparación -->
-
-
-        <!-- PÁRRAFO CONCLUSIVO -->
-        <!-- text-xl = 20px (coherente con párrafo introductorio) -->
-        <p class="text-xl text-gray-700 leading-relaxed">
-          aseofi te permite <span class="font-semibold">proteger tus facturas a crédito de forma individual</span>, 
-          sin obligaciones de cartera completa ni mínimos. Solo asegura lo que realmente necesites, 
-          cuando lo necesites, con total transparencia y flexibilidad.
-        </p>
-        <!-- Nota:
-          - text-xl = 20px (mismo tamaño que otros párrafos)
-          - Resumen del diferenciador ASEOFI
-          - Mensaje persuasivo sobre beneficios
-          - Basado 100% en información del PDF
-        -->
-
-
-      </div>
-      <!-- Fin del contenedor de contenido -->
-
-
-    </div>
-    <!-- Fin de sección Single-Risk vs Global-Risk -->
  
         
         
@@ -347,7 +119,9 @@ import SecureFeatures from '../components/SecureFeatures.jsx';
     <!-- Aquí va el bloque de indicador de riesgo, se pondrá o no en un futuro -->
 
 
+
   </div>
+
 
 
 </section>
