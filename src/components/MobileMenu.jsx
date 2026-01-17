@@ -85,7 +85,7 @@ export default function MobileMenu({ showQr = true }) {
             {/* Cabecera - LOGO EN VEZ DE TEXTO */}
             <div className="flex justify-between items-center mb-10">
               <img
-                src="/logo_aseofi.png"
+                src="/logo_aseofi.webp"
                 alt="ASEOFI Logo"
                 className="h-12"
               />
