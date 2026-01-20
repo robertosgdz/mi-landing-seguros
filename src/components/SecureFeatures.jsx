@@ -194,7 +194,7 @@ export default function SecureFeatures() {
               
               {/* TÍTULO DEL MODAL */}
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-12 tracking-tight">
-                El Proceso aseofi Paso a Paso
+                El Proceso aseofi® Paso a Paso
               </h2>
               
               {/* GRID UNIFICADO con todos los pasos explicados (Basado en PDF) */}
@@ -251,9 +251,9 @@ export default function SecureFeatures() {
                   {/* COLUMNA DERECHA: Contexto sobre la oferta */}
                   <div className="text-base text-gray-800 leading-relaxed">
                     La oferta se calcula basándose en el perfil de riesgo del deudor. 
-                    Como empresa o autónomo, en aseofi, no estás obligado a asegurar toda tu cartera.
+                    Como empresa o autónomo, en aseofi™, no estás obligado a asegurar toda tu cartera.
                   </div>
-                  {/* Nota: "no estás obligado" es la ventaja clave del single-risk del PDF */}
+                  {/* Nota: "no estás obligado" es la ventaja clave del modelo del PDF */}
                 </div>
 
 
@@ -306,7 +306,7 @@ export default function SecureFeatures() {
                     Si rechazas, el estado de la solicitud cambia a "Rechazada". 
                     Puedes crear una nueva solicitud en cualquier momento sin limitaciones.
                   </div>
-                  {/* Nota: Flexibilidad clave del modelo single-risk */}
+                  {/* Nota: Flexibilidad clave del modelo */}
                 </div>
 
 

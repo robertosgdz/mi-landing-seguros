@@ -4,6 +4,7 @@ import '../styles/header.css';
 import MobileMenu from './MobileMenu.jsx';
 ---
 
+
 <!-- HEADER FIJO -->
 <header id="main-header" class="fixed top-0 left-0 w-full z-50">
   
@@ -17,9 +18,10 @@ import MobileMenu from './MobileMenu.jsx';
           id="header-logo" 
           src="/logo_aseofi_inverso.webp" 
           alt="aseofi Logo" 
-          class="h-20 md:h-24 lg:h-20 transition-opacity duration-1000 ease-in-out"
+          class="h-20 md:h-24 lg:h-20 transition-opacity duration-1000 ease-in-out cursor-pointer"
         />
       </div>
+
 
       <!-- 2. ENLACES (Solo Desktop Grande) -->
       <div 
@@ -32,6 +34,7 @@ import MobileMenu from './MobileMenu.jsx';
         <a href="#contact" class="nav-link text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm">Contáctanos</a>
       </div>
 
+
       <!-- 3. BOTÓN INICIAR SESIÓN (Solo Desktop) + MENÚ MÓVIL -->
       <div class="flex items-center shrink-0 z-20 gap-4">
         
@@ -43,6 +46,7 @@ import MobileMenu from './MobileMenu.jsx';
           Iniciar sesión
         </a>
 
+
         <!-- MENÚ MÓVIL Y TABLET -->
         <div class="flex items-center shrink-0 lg:hidden scale-125">
           <MobileMenu client:only="react" />
@@ -53,7 +57,9 @@ import MobileMenu from './MobileMenu.jsx';
     </div>
   </nav>
 
+
 </header>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -62,23 +68,38 @@ import MobileMenu from './MobileMenu.jsx';
     const navLinks = document.querySelectorAll('.nav-link');
     const loginBtn = document.querySelector('.login-btn');
 
+
     if (!navContainer || !headerLogo) return;
 
+
     const SCROLL_THRESHOLD = 10;
+
+
+    // CLICK EN EL LOGO PARA SCROLL AL TOP
+    headerLogo.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
 
     const applyTransparentHeader = () => {
       navContainer.classList.remove('bg-white/30','backdrop-blur-xl','shadow-lg','border-b','border-white/20');
       headerLogo.src = '/logo_aseofi_inverso.webp';
+
 
       navLinks.forEach(link => {
         link.classList.add('text-white');
         link.classList.remove('text-gray-700');
       });
 
+
       if (loginBtn) {
         loginBtn.classList.add('text-white');
         loginBtn.classList.remove('text-gray-700');
       }
+
 
       // Mostrar icono blanco
       const loginIconWhite = document.getElementById('mobile-login-icon-white');
@@ -86,25 +107,30 @@ import MobileMenu from './MobileMenu.jsx';
       if (loginIconWhite) loginIconWhite.classList.remove('hidden');
       if (loginIconBlue) loginIconBlue.classList.add('hidden');
 
+
       const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
       hamburgerLines.forEach((line: any) => {
         line.setAttribute('stroke', '#ffffff');
       });
     };
 
+
     const applySemiTransparentHeader = () => {
       navContainer.classList.add('bg-white/30','backdrop-blur-xl','shadow-lg','border-b','border-white/20');
       headerLogo.src = '/logo_aseofi.webp';
+
 
       navLinks.forEach(link => {
         link.classList.remove('text-white');
         link.classList.add('text-gray-700');
       });
 
+
       if (loginBtn) {
         loginBtn.classList.remove('text-white');
         loginBtn.classList.add('text-gray-700');
       }
+
 
       // Mostrar icono azul
       const loginIconWhite = document.getElementById('mobile-login-icon-white');
@@ -112,11 +138,13 @@ import MobileMenu from './MobileMenu.jsx';
       if (loginIconWhite) loginIconWhite.classList.add('hidden');
       if (loginIconBlue) loginIconBlue.classList.remove('hidden');
 
+
       const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
       hamburgerLines.forEach((line: any) => {
         line.setAttribute('stroke', '#0d203e');
       });
     };
+
 
     const checkHeaderStyle = () => {
       const currentScroll = window.scrollY || window.pageYOffset;
@@ -126,6 +154,7 @@ import MobileMenu from './MobileMenu.jsx';
         applyTransparentHeader();
       }
     };
+
 
     // Buscar los elementos en cada scroll (en caso de que React aún no los haya montado)
     window.addEventListener('scroll', checkHeaderStyle, { passive: true });
@@ -137,5 +166,3 @@ import MobileMenu from './MobileMenu.jsx';
     }, 100);
   });
 </script>
-
-

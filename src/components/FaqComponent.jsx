@@ -17,9 +17,9 @@ const faqData = [
   },
   {
     // Pregunta 2: Ventajas del modelo single-risk
-    question: "¿Por qué aseofi es diferente a otros seguros de crédito?",
+    question: "¿Por qué aseofi® es diferente a otros seguros de crédito?",
     // Del PDF: "los seguros 'global-risk' implica tener que asegurar toda la cartera" y "single-risk permiten asegurar operaciones individuales"
-    answer: "La mayoría de seguros de crédito te obligan a asegurar toda tu cartera de clientes y tienen facturación mínima. Aseofi ofrece aseguramientos de facturas individuales, sin compromisos, solo las facturas que te interesen asegurar. Ideal para pymes y autónomos."
+    answer: "La mayoría de seguros de crédito te obligan a asegurar toda tu cartera de clientes y tienen facturación mínima. aseofi® ofrece aseguramientos de facturas individuales, sin compromisos, solo las facturas que te interesen asegurar. Ideal para pymes y autónomos."
   },
   {
     // Pregunta 3: Proceso de solicitud
@@ -35,9 +35,9 @@ const faqData = [
   },
   {
     // Pregunta 5: ¿Quién respalda aseofi?
-    question: "¿Quién está detrás de aseofi?",
+    question: "¿Quién está detrás de aseofi™?",
     // Del PDF: "esta aplicación forma parte o está respaldada por DIEGOCOR, correduría de seguros, S.L. con CDGS: J-3021"
-    answer: "aseofi forma parte de DIEGOCOR, Correduría de Seguros, S.L. (CDGS: J-3021, ubicada en Murcia, España). Somos una correduría especializada en seguros de crédito que trabaja con aseguradoras nacionales y multinacionales de primer nivel. Además cumplimos con todos los requisitos legales de la Ley de Mediación de Seguros."
+    answer: "aseofi™ forma parte de DIEGOCOR, Correduría de Seguros, S.L. (CDGS: J-3021), ubicada en Murcia, España. Somos una correduría especializada en seguros de crédito que trabaja con aseguradoras nacionales y multinacionales de primer nivel. Además cumplimos con todos los requisitos legales de la Ley de Mediación de Seguros."
   },
   {
     // Pregunta 6: ¿Cómo protege Solunion el impago?
