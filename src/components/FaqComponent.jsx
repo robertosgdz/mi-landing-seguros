@@ -11,9 +11,9 @@ import React, { useState } from 'react';
 const faqData = [
   {
     // Pregunta 1: Acceso a ASEOFI
-    question: "¿Quién puede usar aseofi?",
+    question: "¿Quién puede usar aseofi®?",
     // Del PDF: "no se discriminaría si el tomador del seguro es una gran corporación, una pyme o un autónomo"
-    answer: "Cualquier empresa, pyme o autónomo puede usar aseofi. No hay requisitos de facturación mínima ni obligación de asegurar toda tu cartera de clientes. Solo asegura las facturas a crédito que necesites proteger."
+    answer: "Cualquier empresa, pyme o autónomo puede usar aseofi®. No hay requisitos de facturación mínima ni obligación de asegurar toda tu cartera de clientes. Solo asegura las facturas a crédito que necesites proteger."
   },
   {
     // Pregunta 2: Ventajas del modelo single-risk
@@ -35,9 +35,9 @@ const faqData = [
   },
   {
     // Pregunta 5: ¿Quién respalda aseofi?
-    question: "¿Quién está detrás de aseofi™?",
+    question: "¿Quién está detrás de aseofi®?",
     // Del PDF: "esta aplicación forma parte o está respaldada por DIEGOCOR, correduría de seguros, S.L. con CDGS: J-3021"
-    answer: "aseofi™ forma parte de DIEGOCOR, Correduría de Seguros, S.L. (CDGS: J-3021), ubicada en Murcia, España. Somos una correduría especializada en seguros de crédito que trabaja con aseguradoras nacionales y multinacionales de primer nivel. Además cumplimos con todos los requisitos legales de la Ley de Mediación de Seguros."
+    answer: "aseofi® forma parte de DIEGOCOR, Correduría de Seguros, S.L. (CDGS: J-3021), ubicada en Murcia, España. Somos una correduría especializada en seguros de crédito que trabaja con aseguradoras nacionales y multinacionales de primer nivel. Además cumplimos con todos los requisitos legales de la Ley de Mediación de Seguros."
   },
   {
     // Pregunta 6: ¿Cómo protege Solunion el impago?

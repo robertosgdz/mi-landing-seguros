@@ -251,7 +251,7 @@ export default function SecureFeatures() {
                   {/* COLUMNA DERECHA: Contexto sobre la oferta */}
                   <div className="text-base text-gray-800 leading-relaxed">
                     La oferta se calcula basándose en el perfil de riesgo del deudor. 
-                    Como empresa o autónomo, en aseofi™, no estás obligado a asegurar toda tu cartera.
+                    Como empresa o autónomo, en aseofi®, no estás obligado a asegurar toda tu cartera.
                   </div>
                   {/* Nota: "no estás obligado" es la ventaja clave del modelo del PDF */}
                 </div>
