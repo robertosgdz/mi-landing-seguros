@@ -1,13 +1,10 @@
 // IMPORTACIONES DE REACT
 import React, { useState } from 'react';
 
-
-
 // ============================================
 // DATOS DE PREGUNTAS FRECUENTES (Basadas en PDF)
 // ============================================
 // Array con 6 preguntas sobre ASEOFI
-// Cada objeto contiene: question (pregunta) y answer (respuesta)
 const faqData = [
   {
     // Pregunta 1: Acceso a ASEOFI
@@ -47,8 +44,6 @@ const faqData = [
   }
 ];
 
-
-
 // ============================================
 // COMPONENTE REACT: PREGUNTAS FRECUENTES (FAQ)
 // ============================================
@@ -61,7 +56,6 @@ export default function FaqComponent() {
   // setOpenIndex = función para cambiar qué pregunta se abre/cierra
   const [openIndex, setOpenIndex] = useState(null);
 
-
   // ============================================
   // FUNCIÓN: Toggle para abrir/cerrar preguntas
   // ============================================
@@ -71,61 +65,32 @@ export default function FaqComponent() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-
-
   return (
     <div className="w-full">
       
-      {/* ============================================
-          MAPEO DE PREGUNTAS: Renderiza cada pregunta del array
-          ============================================ */}
+      {/* RENDERIZA CADA PREGUNTA DEL ARRAY */}
       {faqData.map((item, index) => {
         
         // Verifica si esta pregunta está actualmente abierta
         const isOpen = openIndex === index;
 
-
         return (
-          // CONTENEDOR DE CADA PREGUNTA-RESPUESTA
+          // CONTENEDOR DE PREGUNTA-RESPUESTA CON BORDE INFERIOR
           <div key={index} className="border-b border-gray-200">
             
-            {/* ============================================
-                BOTÓN / PREGUNTA (Clickeable)
-                ============================================ */}
+            {/* BOTÓN CLICKEABLE DE PREGUNTA */}
             <button
               onClick={() => toggleFaq(index)}
-              // Estilos: flex, espacio entre, texto a la izquierda, sin outline en focus
               className="w-full py-6 flex justify-between items-center text-left group focus:outline-none cursor-pointer"
             >
               
-              {/* TEXTO DE LA PREGUNTA */}
-              {/* 
-                - text-xl = 20px (coherente con features y párrafos)
-                - font-bold = Peso 700
-                - text-gray-900 = Negro oscuro (#111827)
-                - group-hover:text-[#14549C] = Azul al pasar el ratón
-                - transition-colors = Cambio de color suave (200ms)
-                - pr-8 = Padding derecho para evitar solapamiento con icono
-              */}
+              {/* TEXTO DE PREGUNTA CON EFECTO HOVER */}
               <span className="text-xl font-bold text-gray-900 group-hover:text-[#14549C] transition-colors pr-8">
                 {item.question}
               </span>
 
-
-              {/* ICONO ROTATIVO (+) */}
-              {/*
-                - shrink-0 = No se comprime
-                - ml-4 = Margen izquierdo para separación
-              */}
+              {/* ICONO + QUE ROTA 45° AL ABRIRSE */}
               <span className="shrink-0 ml-4">
-                {/* 
-                  SVG: Icono de "+" que rota 45° cuando se abre (parecido a "×")
-                  - w-6 h-6 = Tamaño 24x24px
-                  - transform transition-transform = Animación de rotación
-                  - duration-500 = 500ms (rotación lenta y suave)
-                  - ease-in-out = Aceleración natural
-                  - rotate-45 si isOpen, rotate-0 si cerrado
-                */}
                 <svg 
                   className={`w-6 h-6 text-gray-900 transform transition-transform duration-500 ease-in-out ${isOpen ? 'rotate-45' : 'rotate-0'}`} 
                   fill="none" 
@@ -133,107 +98,62 @@ export default function FaqComponent() {
                   stroke="currentColor"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" />
-                  {/* 
-                    strokeLinecap="round" = Extremos redondeados en las líneas
-                    strokeWidth="2.5" = Grosor de la línea
-                    d="M12 4v16m8-8H4" = Dibuja una cruz (+)
-                  */}
                 </svg>
               </span>
             </button>
 
-
-            {/* ============================================
-                CONTENEDOR ANIMADO DE RESPUESTA
-                ============================================ */}
-            {/*
-              - faq-transition = Clase personalizada (ver CSS al final)
-              - faq-open / faq-closed = Estados que controlan la animación
-              - Cambia automáticamente cuando isOpen cambia
-            */}
+            {/* CONTENEDOR ANIMADO DE RESPUESTA (Acordeón) */}
             <div 
               className={`faq-transition ${isOpen ? 'faq-open' : 'faq-closed'}`}
             >
-              
-              {/* CONTENEDOR INTERNO (El que se desliza) */}
-              {/*
-                - faq-inner = Clase personalizada con mediciones automáticas
-              */}
+              {/* DIV INTERNO CON EL CONTENIDO REAL */}
               <div className="faq-inner">
-                
                 {/* TEXTO DE RESPUESTA */}
-                {/*
-                  - text-gray-600 = Gris medio (#4b5563)
-                  - text-xl = 20px (coherente con features y párrafos)
-                  - leading-relaxed = Altura de línea generosa (1.625) para legibilidad
-                  - max-w-3xl = Ancho máximo para evitar líneas demasiado largas
-                  - pb-8 = Padding inferior (espaciado abajo)
-                  - pt-2 = Padding superior pequeño (separación de la pregunta)
-                */}
                 <p className="text-gray-600 text-xl leading-relaxed max-w-3xl pb-8 pt-2">
                   {item.answer}
                 </p>
               </div>
             </div>
 
-
           </div>
         );
       })}
 
-
-
-      {/* ============================================
-          ENLACE DE AYUDA AL FINAL
-          ============================================ */}
-      {/* 
-        - mt-12 = Margen superior 48px (separación)
-        - pl-1 = Pequeño padding izquierdo (alineación)
-      */}
+      {/* ENLACE DE AYUDA AL FINAL */}
       <div className="mt-12 pl-1">
-        
-        {/* LINK A PÁGINA DE AYUDA */}
         <a 
           href="#contact" 
-          // Estilos: inline-flex, items-center, negrita, hover azul
           className="inline-flex items-center text-xl font-bold text-gray-900 hover:text-[#14549C] transition-colors"
         >
           {/* TEXTO */}
           Ayuda
           
           {/* ICONO FLECHA DERECHA */}
-          {/*
-            - w-5 h-5 = Tamaño 20x20px
-            - ml-2 = Margen izquierdo 8px (separación del texto)
-          */}
           <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
           </svg>
         </a>
       </div>
 
-
-      {/* ============================================
-          CSS PERSONALIZADO PARA ANIMACIONES FAQ
-          ============================================ */}
+      {/* ESTILOS PARA ANIMACIÓN DE ACORDEÓN */}
       <style>{`
-        /* Contenedor que se anima cuando se abre/cierra */
+        /* Contenedor que se expande/contrae */
         .faq-transition {
           overflow: hidden;
           transition: max-height 0.5s ease-in-out;
         }
 
-        /* Estado abierto: muestra la respuesta */
+        /* Estado abierto: muestra respuesta */
         .faq-open {
           max-height: 1000px;
         }
 
-        /* Estado cerrado: oculta la respuesta */
+        /* Estado cerrado: oculta respuesta */
         .faq-closed {
           max-height: 0;
         }
 
-        /* Contenedor interno que mide automáticamente */
+        /* Contenedor interno */
         .faq-inner {
           overflow: hidden;
         }

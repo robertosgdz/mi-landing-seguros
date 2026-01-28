@@ -1,9 +1,11 @@
 ---
+// Obtiene el email del destinatario desde variables de entorno
 const recipientEmail = import.meta.env.RECIPIENT_EMAIL;
 ---
-
+<!-- Formulario de contacto con campos requeridos y estilos Tailwind -->
 <form id="contactForm" class="space-y-6 w-full max-w-350 px-4 lg:pl-0 lg:pr-8 mx-auto md:mx-0 lg:ml-0 mt-30">
-  <!-- Nombre -->
+  
+  <!-- Campo: Nombre (obligatorio) -->
   <div>
     <label for="name" class="block text-lg font-medium text-gray-900 mb-3">
       Nombre Completo
@@ -18,7 +20,7 @@ const recipientEmail = import.meta.env.RECIPIENT_EMAIL;
     />
   </div>
 
-  <!-- Email -->
+  <!-- Campo: Email (obligatorio, validado por navegador) -->
   <div>
     <label for="email" class="block text-lg font-medium text-gray-900 mb-3">
       Correo Electrónico
@@ -33,7 +35,7 @@ const recipientEmail = import.meta.env.RECIPIENT_EMAIL;
     />
   </div>
 
-  <!-- Teléfono -->
+  <!-- Campo: Teléfono (opcional) -->
   <div>
     <label for="phone" class="block text-lg font-medium text-gray-900 mb-3">
       Teléfono
@@ -47,7 +49,7 @@ const recipientEmail = import.meta.env.RECIPIENT_EMAIL;
     />
   </div>
 
-  <!-- Asunto -->
+  <!-- Campo: Asunto (obligatorio) -->
   <div>
     <label for="subject" class="block text-lg font-medium text-gray-900 mb-3">
       Asunto
@@ -62,7 +64,7 @@ const recipientEmail = import.meta.env.RECIPIENT_EMAIL;
     />
   </div>
 
-  <!-- Mensaje -->
+  <!-- Campo: Mensaje (obligatorio, textarea de 5 filas) -->
   <div>
     <label for="message" class="block text-lg font-medium text-gray-900 mb-3">
       Mensaje
@@ -77,63 +79,71 @@ const recipientEmail = import.meta.env.RECIPIENT_EMAIL;
     ></textarea>
   </div>
 
-  <!-- Estado del formulario -->
+  <!-- Contenedor para mensajes de éxito/error (oculto por defecto) -->
   <div id="formStatus" class="hidden p-4 rounded-lg text-center font-semibold text-base"></div>
 
-  <!-- Botón Enviar (Estética Apple) -->
+  <!-- Botón envío (deshabilitado durante el proceso) -->
   <button
-  type="submit"
-  id="submitBtn"
-  class="px-8 py-3 rounded-2xl font-semibold text-base bg-black text-white hover:bg-[#0d203e] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
->
-  Enviar Mensaje
-</button>
+    type="submit"
+    id="submitBtn"
+    class="px-8 py-3 rounded-2xl font-semibold text-base bg-black text-white hover:bg-[#0d203e] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+  >
+    Enviar Mensaje
+  </button>
 </form>
 
 <script define:vars={{ recipientEmail }}>
+  // Referencias a elementos del DOM
   const form = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
   const submitBtn = document.getElementById('submitBtn');
 
+  // Manejador de envío del formulario
   form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    submitBtn.disabled = true;
+  e.preventDefault();
+  submitBtn.disabled = true;
 
-    try {
-      const formData = new FormData(form);
-      const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        subject: formData.get('subject'),
-        message: formData.get('message'),
-        recipientEmail: recipientEmail,
-      };
+  try {
+    const data = {
+      name: document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      subject: document.getElementById('subject').value.trim(),
+      message: document.getElementById('message').value.trim(),
+    };
 
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+    // ✅ DEBUG DETALLADO
+    console.log('name:', data.name);
+    console.log('email:', data.email);
+    console.log('subject:', data.subject);
+    console.log('message:', data.message);
+    console.log('JSON string:', JSON.stringify(data));
 
-      const result = await response.json();
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
 
-      if (response.ok) {
-        formStatus.textContent = '✅ ¡Mensaje enviado correctamente!';
-        formStatus.className =
-          'block p-4 rounded-lg text-center font-semibold text-base bg-green-100 text-green-700';
-        form.reset();
-      } else {
-        throw new Error(result.message || 'Error desconocido');
-      }
-    } catch (error) {
-      formStatus.textContent = `❌ Error: ${error instanceof Error ? error.message : 'Error desconocido'}`;
-      formStatus.className =
-        'block p-4 rounded-lg text-center font-semibold text-base bg-red-100 text-red-700';
-    } finally {
-      submitBtn.disabled = false;
+    console.log('Response status:', response.status);
+    const result = await response.json();
+    console.log('Response body:', result);
+
+    if (response.ok) {
+      formStatus.textContent = '✅ ¡Mensaje enviado correctamente!';
+      formStatus.className = 'block p-4 rounded-lg text-center font-semibold text-base bg-green-100 text-green-700';
+      form.reset();
+    } else {
+      throw new Error(result.message || 'Error desconocido');
     }
-  });
+  } catch (error) {
+    console.error('Error completo:', error);
+    formStatus.textContent = `❌ Error: ${error instanceof Error ? error.message : 'Error desconocido'}`;
+    formStatus.className = 'block p-4 rounded-lg text-center font-semibold text-base bg-red-100 text-red-700';
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+
+
 </script>

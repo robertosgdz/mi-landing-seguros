@@ -4,15 +4,14 @@ import '../styles/header.css';
 import MobileMenu from './MobileMenu.jsx';
 ---
 
-
-<!-- HEADER FIJO -->
+<!-- Header fijo -->
 <header id="main-header" class="fixed top-0 left-0 w-full z-50">
   
-  <!-- MENÚ DE NAVEGACIÓN -->
+  <!-- Navegación -->
   <nav id="nav-container" class="w-full bg-transparent transition-all duration-1000 ease-in-out">
     <div class="w-full px-4 sm:px-6 lg:px-17.5 py-4 relative flex justify-between items-center">
       
-      <!-- 1. LOGO -->
+      <!-- Logo -->
       <div class="flex items-center shrink-0 z-20">
         <img 
           id="header-logo" 
@@ -22,8 +21,7 @@ import MobileMenu from './MobileMenu.jsx';
         />
       </div>
 
-
-      <!-- 2. ENLACES (Solo Desktop Grande) -->
+      <!-- Enlaces de navegación (solo desktop) -->
       <div 
         id="nav-links" 
         class="hidden lg:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 space-x-10 transition-opacity duration-1000 ease-in-out opacity-100"
@@ -34,11 +32,10 @@ import MobileMenu from './MobileMenu.jsx';
         <a href="#contact" class="nav-link text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm">Contáctanos</a>
       </div>
 
-
-      <!-- 3. BOTÓN INICIAR SESIÓN (Solo Desktop) + MENÚ MÓVIL -->
+      <!-- Botón iniciar sesión y menú móvil -->
       <div class="flex items-center shrink-0 z-20 gap-4">
         
-        <!-- BOTÓN INICIAR SESIÓN (Desktop) -->
+        <!-- Botón iniciar sesión (solo desktop) -->
         <a 
           href="/login" 
           class="hidden lg:inline-block login-btn text-2xl font-medium text-white hover:text-[#0d203e] transition-colors duration-1000 drop-shadow-sm"
@@ -46,8 +43,7 @@ import MobileMenu from './MobileMenu.jsx';
           Iniciar sesión
         </a>
 
-
-        <!-- MENÚ MÓVIL Y TABLET -->
+        <!-- Menú móvil (tablet y móvil) -->
         <div class="flex items-center shrink-0 lg:hidden scale-125">
           <MobileMenu client:only="react" />
         </div>
@@ -57,25 +53,21 @@ import MobileMenu from './MobileMenu.jsx';
     </div>
   </nav>
 
-
 </header>
-
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Referencias a elementos
     const navContainer = document.getElementById('nav-container');
     const headerLogo = document.getElementById('header-logo') as HTMLImageElement | null;
     const navLinks = document.querySelectorAll('.nav-link');
     const loginBtn = document.querySelector('.login-btn');
 
-
     if (!navContainer || !headerLogo) return;
-
 
     const SCROLL_THRESHOLD = 10;
 
-
-    // CLICK EN EL LOGO PARA SCROLL AL TOP
+    // Scroll al top al hacer click en el logo
     headerLogo.addEventListener('click', () => {
       window.scrollTo({
         top: 0,
@@ -83,69 +75,63 @@ import MobileMenu from './MobileMenu.jsx';
       });
     });
 
-
+    // Aplica estilos transparentes (estado inicial)
     const applyTransparentHeader = () => {
       navContainer.classList.remove('bg-white/30','backdrop-blur-xl','shadow-lg','border-b','border-white/20');
       headerLogo.src = '/logo_aseofi_inverso.webp';
-
 
       navLinks.forEach(link => {
         link.classList.add('text-white');
         link.classList.remove('text-gray-700');
       });
 
-
       if (loginBtn) {
         loginBtn.classList.add('text-white');
         loginBtn.classList.remove('text-gray-700');
       }
 
-
-      // Mostrar icono blanco
+      // Cambiar icono de login a blanco
       const loginIconWhite = document.getElementById('mobile-login-icon-white');
       const loginIconBlue = document.getElementById('mobile-login-icon-blue');
       if (loginIconWhite) loginIconWhite.classList.remove('hidden');
       if (loginIconBlue) loginIconBlue.classList.add('hidden');
 
-
+      // Cambiar color del menú hamburguesa a blanco
       const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
       hamburgerLines.forEach((line: any) => {
         line.setAttribute('stroke', '#ffffff');
       });
     };
 
-
+    // Aplica estilos semi-transparentes (al hacer scroll)
     const applySemiTransparentHeader = () => {
       navContainer.classList.add('bg-white/30','backdrop-blur-xl','shadow-lg','border-b','border-white/20');
       headerLogo.src = '/logo_aseofi.webp';
-
 
       navLinks.forEach(link => {
         link.classList.remove('text-white');
         link.classList.add('text-gray-700');
       });
 
-
       if (loginBtn) {
         loginBtn.classList.remove('text-white');
         loginBtn.classList.add('text-gray-700');
       }
 
-
-      // Mostrar icono azul
+      // Cambiar icono de login a azul
       const loginIconWhite = document.getElementById('mobile-login-icon-white');
       const loginIconBlue = document.getElementById('mobile-login-icon-blue');
       if (loginIconWhite) loginIconWhite.classList.add('hidden');
       if (loginIconBlue) loginIconBlue.classList.remove('hidden');
 
-
+      // Cambiar color del menú hamburguesa a azul
       const hamburgerLines = document.querySelectorAll('.mobile-menu-btn svg line, .mobile-menu-btn svg path');
       hamburgerLines.forEach((line: any) => {
         line.setAttribute('stroke', '#0d203e');
       });
     };
 
-
+    // Verifica el scroll y aplica estilos correspondientes
     const checkHeaderStyle = () => {
       const currentScroll = window.scrollY || window.pageYOffset;
       if (currentScroll > SCROLL_THRESHOLD) {
@@ -155,12 +141,11 @@ import MobileMenu from './MobileMenu.jsx';
       }
     };
 
-
-    // Buscar los elementos en cada scroll (en caso de que React aún no los haya montado)
+    // Detecta scroll y resize para actualizar estilos
     window.addEventListener('scroll', checkHeaderStyle, { passive: true });
     window.addEventListener('resize', checkHeaderStyle);
     
-    // Ejecutar inicialmente con un pequeño delay para que React monte
+    // Ejecuta al cargar con delay para que React monte
     setTimeout(() => {
       checkHeaderStyle();
     }, 100);

@@ -4,122 +4,93 @@
 import ScrollReveal from './ScrollReveal.jsx';
 ---
 
-
+<!-- Hero Section -->
 <section class="hero-section w-full relative">
   
-  <!-- ============================================
-       1. VIDEO DE FONDO (Solo en escritorio)
-       ============================================ -->
-  <!-- Versión optimizada para múltiples formatos -->
-<video 
-  class="absolute inset-0 w-full h-full object-cover z-0 hidden lg:block"
-  autoplay 
-  loop 
-  muted 
-  playsinline
-  preload="none"
->
-  <source src="/hero-bg-desktop.mp4" type="video/mp4" />
-</video>
+  <!-- Video de fondo (solo desktop) -->
+  <video 
+    class="absolute inset-0 w-full h-full object-cover z-0 hidden lg:block"
+    autoplay 
+    loop 
+    muted 
+    playsinline
+    preload="none"
+  >
+    <source src="/hero-bg-desktop.mp4" type="video/mp4" />
+  </video>
 
-
-
-  <!-- Nota: hidden lg:block = no se ve en móvil/tablet, solo en desktop (lg+) -->
-
-
-  <!-- ============================================
-       2. OVERLAY OSCURO (Legibilidad del texto)
-       ============================================ -->
+  <!-- Overlay oscuro para legibilidad -->
   <div class="hero-overlay absolute inset-0 w-full h-full z-1"></div>
-  <!-- Nota: z-1 = capa intermedia entre video (z-0) y contenido (z-10) -->
 
-
-  <!-- ============================================
-       3. CONTENIDO PRINCIPAL (Texto + CTA)
-       ============================================ -->
+  <!-- Contenido principal -->
   <div class="hero-content max-w-7xl mx-auto px-4 relative z-10 pt-200 md:pt-56 lg:pt-48">
     
-    <!-- ScrollReveal: Anima el contenido al scrollear -->
+    <!-- Animación al scroll -->
     <ScrollReveal client:idle>
       
-      <!-- TITULAR PRINCIPAL (H1) -->
+      <!-- Título principal -->
       <h1 class="hero-title -mt-6 md:mt-0 text-2xl! sm:text-5xl! md:text-7xl! lg:text-7xl! leading-tight!">
-      CADA OPERACIÓN ESTÁ PROTEGIDA<br>
-      TU SIGUES CRECIENDO
+        CADA OPERACIÓN ESTÁ PROTEGIDA<br>
+        TU SIGUES CRECIENDO
       </h1>
 
-
-      <!-- SUBTÍTULO (Explicación) -->
-<p class="hero-subtitle -mt-4 md:mt-0 text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
-  Asegure su factura/operación de forma individual.
-</p>
-<ul class="hero-list text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
-  <li>Sin mínimos de facturación</li>
-  <li>Sin comprometer toda tu cartera</li>
-  <li>Solicita una cotización rápida y sencilla</li>
-  <li>Recibe ofertas de una Aseguradora de primer nivel</li>
-</ul> 
+      <!-- Subtítulo y características -->
+      <p class="hero-subtitle -mt-4 md:mt-0 text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
+        Asegure su factura/operación de forma individual.
+      </p>
+      <ul class="hero-list text-lg md:text-2xl lg:text-xl max-w-3xl leading-relaxed">
+        <li>Sin mínimos de facturación</li>
+        <li>Sin comprometer toda tu cartera</li>
+        <li>Solicita una cotización rápida y sencilla</li>
+        <li>Recibe ofertas de una Aseguradora de primer nivel</li>
+      </ul> 
     </ScrollReveal>
   </div>
 
-
-  <!-- ============================================
-       4. BOTÓN SECUNDARIO (Derecha)
-       ============================================ -->
+  <!-- Botón CTA derecha -->
   <div class="hero-buttons-right">
     <a href="#contact" class="hero-btn-secondary-right hero-btn">
       CONTACTA CON UN ESPECIALISTA
     </a>
   </div>
 
-
 </section>
 
-
-<!-- SCRIPT PARA DETECTAR POSICIÓN DEL BOTÓN -->
+<!-- Script para cambiar estilo del botón según posición -->
 <script is:inline defer>
   const updateButtonStyle = () => {
+    // Referencias a elementos
     const heroBtn = document.querySelector('.hero-btn-secondary-right');
     const heroSection = document.querySelector('.hero-section');
     const footer = document.querySelector('footer');
-
 
     if (!heroBtn || !heroSection || !footer) {
       console.warn('Elementos no encontrados');
       return;
     }
 
-
+    // Obtiene posiciones en pantalla
     const btnRect = heroBtn.getBoundingClientRect();
     const heroRect = heroSection.getBoundingClientRect();
     const footerRect = footer.getBoundingClientRect();
 
-
-    // Calcular si está dentro del hero (incluyendo parte oculta)
+    // Verifica si botón está dentro del hero o footer
     const isInHero = btnRect.top < heroRect.bottom && btnRect.bottom > heroRect.top;
-    
-    // Calcular si está dentro del footer
     const isInFooter = btnRect.top < footerRect.bottom && btnRect.bottom > footerRect.top;
 
-
-    console.log('isInHero:', isInHero, 'isInFooter:', isInFooter);
-
-
+    // Añade/quita clase según posición
     if (isInHero || isInFooter) {
       if (!heroBtn.classList.contains('btn-light')) {
         heroBtn.classList.add('btn-light');
-        console.log('Añadida clase btn-light');
       }
     } else {
       if (heroBtn.classList.contains('btn-light')) {
         heroBtn.classList.remove('btn-light');
-        console.log('Quitada clase btn-light');
       }
     }
   };
 
-
-  // Esperar a que el DOM esté completamente cargado
+  // Ejecuta al cargar el DOM
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => updateButtonStyle(), 100);
@@ -128,10 +99,7 @@ import ScrollReveal from './ScrollReveal.jsx';
     updateButtonStyle();
   }
 
-
-  // Ejecutar en cada scroll
+  // Actualiza al scroll y resize
   window.addEventListener('scroll', updateButtonStyle, { passive: true });
-  
-  // Ejecutar en cada resize
   window.addEventListener('resize', updateButtonStyle);
 </script>

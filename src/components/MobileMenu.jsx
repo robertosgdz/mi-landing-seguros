@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 export default function MobileMenu({ showQr = true }) {
+  // Estado del menú y montaje del componente
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  // Marca el componente como montado en el cliente
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Bloquear scroll al abrir
+  // Bloquea scroll al abrir menú
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -21,16 +23,16 @@ export default function MobileMenu({ showQr = true }) {
 
   return (
     <>
-      {/* CONTENEDOR SUPERIOR: LOGIN + HAMBURGUESA (solo mobile/tablet) */}
+      {/* Contenedor: icono login + botón hamburguesa (solo mobile/tablet) */}
       <div className="lg:hidden flex items-center gap-3">
         
-        {/* ICONO LOGIN → /login (DOS SVGs: uno blanco, uno azul) */}
+        {/* Icono login (blanco y azul según scroll) */}
         <a
           href="/login"
           aria-label="Iniciar sesión"
           className="transition-transform duration-300 ease-out p-1 transform hover:-translate-y-1"
         >
-          {/* SVG BLANCO */}
+          {/* Icono blanco */}
           <svg
             id="mobile-login-icon-white"
             xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +43,7 @@ export default function MobileMenu({ showQr = true }) {
             <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
           </svg>
 
-          {/* SVG AZUL (inicialmente oculto) */}
+          {/* Icono azul (oculto inicialmente) */}
           <svg
             id="mobile-login-icon-blue"
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +55,7 @@ export default function MobileMenu({ showQr = true }) {
           </svg>
         </a>
 
-        {/* BOTÓN HAMBURGUESA */}
+        {/* Botón hamburguesa */}
         <button
           onClick={() => setIsOpen(true)}
           className="mobile-menu-btn text-white text-4xl focus:outline-none transition-transform duration-700 ease-in-out p-2 transform hover:-translate-y-1"
@@ -71,18 +73,19 @@ export default function MobileMenu({ showQr = true }) {
         </button>
       </div>
 
-      {/* MENÚ PANTALLA COMPLETA */}
+      {/* Menú pantalla completa */}
       {mounted && isOpen && createPortal(
         <div className="fixed inset-0 z-99999 flex justify-end">
-          {/* Overlay */}
+          {/* Overlay oscuro */}
           <div
             className="absolute inset-0 bg-black/20 backdrop-blur-sm animate-fadeIn"
             onClick={() => setIsOpen(false)}
           ></div>
 
-          {/* Cajón */}
+          {/* Cajón deslizante */}
           <div className="relative w-full max-w-sm h-full bg-white shadow-2xl flex flex-col p-6 animate-slideInRight overflow-y-auto">
-            {/* Cabecera - LOGO EN VEZ DE TEXTO */}
+            
+            {/* Cabecera con logo y botón cerrar */}
             <div className="flex justify-between items-center mb-10">
               <img
                 src="/logo_aseofi.webp"
@@ -99,7 +102,7 @@ export default function MobileMenu({ showQr = true }) {
               </button>
             </div>
 
-            {/* Links */}
+            {/* Enlaces de navegación */}
             <nav className="flex flex-col space-y-6">
               <a href="#how-it-works" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Cómo funciona</a>
               <a href="#faq" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Preguntas</a>
@@ -107,7 +110,7 @@ export default function MobileMenu({ showQr = true }) {
               <a href="#contact" onClick={() => setIsOpen(false)} className="text-xl font-medium text-gray-800 hover:text-[#14549C] transition-colors">Contáctanos</a>
             </nav>
 
-            {/* FOOTER - INFORMACIÓN LEGAL */}
+            {/* Footer con información legal */}
             <div className="mt-auto pt-6 pb-4 border-t border-gray-200">
               <div className="text-center space-y-2">
                 <p className="text-sm font-semibold text-gray-700">© aseofi 2026</p>
@@ -122,6 +125,7 @@ export default function MobileMenu({ showQr = true }) {
         document.body
       )}
 
+      {/* Animaciones */}
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }

@@ -1,15 +1,16 @@
 ---
 // PrivacyModal.astro
 ---
-
+<!-- Modal de Privacidad de Datos -->
 <div id="privacy-modal" class="privacy-modal hidden">
-  <!-- OVERLAY SEMI-TRANSPARENTE -->
+  
+  <!-- Overlay semi-transparente -->
   <div id="privacy-overlay" class="privacy-overlay"></div>
 
-  <!-- CONTENEDOR DEL MODAL -->
+  <!-- Contenedor del modal -->
   <div class="privacy-modal-content">
     
-    <!-- BOTÓN CERRAR (X) -->
+    <!-- Botón cerrar (X) -->
     <button id="close-privacy-modal" class="privacy-close-btn">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -17,13 +18,11 @@
       </svg>
     </button>
 
-    <!-- CONTENIDO DEL MODAL -->
+    <!-- Contenido del modal -->
     <div class="privacy-modal-body">
       
-      <!-- TÍTULO -->
       <h2>Privacidad de Datos</h2>
 
-      <!-- CONTENIDO DEL TEXTO LEGAL -->
       <div class="privacy-content">
         <p>
           Con arreglo a lo dispuesto en la Ley Orgánica 3/2018, de 5 de diciembre, 
@@ -43,7 +42,7 @@
         </p>
       </div>
 
-      <!-- BOTÓN CERRAR -->
+      <!-- Botón cerrar -->
       <button id="close-privacy-modal-btn" class="privacy-btn-close">
         Entendido
       </button>
@@ -52,6 +51,7 @@
 </div>
 
 <style>
+  /* Modal principal */
   .privacy-modal {
     position: fixed;
     inset: 0;
@@ -62,6 +62,7 @@
     animation: fadeIn 0.3s ease-out forwards;
   }
 
+  /* Animación de entrada */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -71,6 +72,7 @@
     }
   }
 
+  /* Overlay oscuro */
   .privacy-overlay {
     position: absolute;
     inset: 0;
@@ -78,6 +80,7 @@
     backdrop-filter: blur(2px);
   }
 
+  /* Contenedor del modal */
   .privacy-modal-content {
     position: relative;
     z-index: 101;
@@ -91,6 +94,7 @@
     animation: slideUp 0.3s ease-out forwards;
   }
 
+  /* Animación de deslizamiento */
   @keyframes slideUp {
     from {
       transform: translateY(20px);
@@ -102,6 +106,7 @@
     }
   }
 
+  /* Botón cerrar X */
   .privacy-close-btn {
     position: absolute;
     top: 1.5rem;
@@ -122,10 +127,12 @@
     color: #0d203e;
   }
 
+  /* Cuerpo del modal */
   .privacy-modal-body {
     padding: 3rem 2rem 2rem 2rem;
   }
 
+  /* Título principal */
   .privacy-modal-body h2 {
     font-size: 1.875rem;
     font-weight: 700;
@@ -134,11 +141,12 @@
     line-height: 1.2;
   }
 
+  /* Contenedor de contenido */
   .privacy-content {
-    space-y: 1rem;
     margin-bottom: 2rem;
   }
 
+  /* Párrafos */
   .privacy-content p {
     font-size: 0.95rem;
     color: #4b5563;
@@ -151,6 +159,7 @@
     margin-bottom: 0;
   }
 
+  /* Enlaces */
   .privacy-link {
     color: #0d203e;
     font-weight: 600;
@@ -163,6 +172,7 @@
     opacity: 0.7;
   }
 
+  /* Botón cerrar */
   .privacy-btn-close {
     width: 100%;
     padding: 0.875rem 2rem;
@@ -181,11 +191,12 @@
     transform: translateY(-2px);
   }
 
+  /* Ocultar modal */
   .privacy-modal.hidden {
     display: none;
   }
 
-  /* RESPONSIVE */
+  /* Responsivo */
   @media (max-width: 768px) {
     .privacy-modal-content {
       width: 95%;
@@ -209,33 +220,34 @@
 </style>
 
 <script>
+  // Referencias a elementos
   const privacyModal = document.getElementById('privacy-modal');
   const closePrivacyModalBtn = document.getElementById('close-privacy-modal-btn');
   const closePrivacyBtn = document.getElementById('close-privacy-modal');
   const privacyOverlay = document.getElementById('privacy-overlay');
 
-  // Verificar que los elementos existen
+  // Valida que los elementos existan
   if (!privacyModal || !closePrivacyModalBtn || !closePrivacyBtn) {
     console.error('Privacy modal elements not found');
   }
 
-  // Función para cerrar modal
+  // Cierra el modal
   const closeModal = () => {
     if (privacyModal) {
       privacyModal.classList.add('hidden');
     }
   };
 
-  // Cerrar al hacer clic en botón Entendido
+  // Cierra al hacer clic en botón Entendido
   closePrivacyModalBtn?.addEventListener('click', closeModal);
 
-  // Cerrar al hacer clic en X
+  // Cierra al hacer clic en X
   closePrivacyBtn?.addEventListener('click', closeModal);
 
-  // Cerrar al hacer clic en el overlay
+  // Cierra al hacer clic en overlay
   privacyOverlay?.addEventListener('click', closeModal);
 
-  // Exponer función global para abrir el modal (sin tipos TypeScript)
+  // Expone función global para abrir el modal
   (window as any).openPrivacyModal = () => {
     if (privacyModal) {
       privacyModal.classList.remove('hidden');

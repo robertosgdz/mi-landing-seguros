@@ -7,8 +7,8 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-start lg:items-stretch">
         
-        <!-- COLUMNA IZQUIERDA: IMAGEN 404 -->
-          <div class="h-fit order-2 lg:order-1 lg:-ml-35 lg:max-w-sm md:h-160 lg:h-auto">
+        <!-- Columna izquierda: imagen 404 -->
+        <div class="h-fit order-2 lg:order-1 lg:-ml-35 lg:max-w-sm md:h-160 lg:h-auto">
           <div class="relative rounded-2xl overflow-hidden border border-gray-100 shadow-sm h-full">
             <div class="absolute inset-0 bg-black/5 z-10 pointer-events-none"></div>
             <img 
@@ -22,7 +22,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <!-- COLUMNA DERECHA: CONTENIDO -->
+        <!-- Columna derecha: contenido -->
         <div class="flex flex-col order-1 lg:order-2 lg:-ml-40 items-start justify-start gap-4 md:-mt-10 lg:mt-0">
           
           <div class="mb-8 w-full">
@@ -47,6 +47,7 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+  /* Contenedor principal */
   .error-container {
     min-height: 100vh;
     display: flex;
@@ -56,6 +57,7 @@ import Layout from '../layouts/Layout.astro';
     background-color: white;
   }
 
+  /* Descripción del error */
   .error-description {
     font-size: 1.125rem;
     color: #6b7280;
@@ -64,6 +66,7 @@ import Layout from '../layouts/Layout.astro';
     max-width: 100%;
   }
 
+  /* Contenedor de acciones */
   .error-actions {
     display: flex;
     flex-direction: column;
@@ -77,7 +80,7 @@ import Layout from '../layouts/Layout.astro';
     }
   }
 
-  /* Estilo del enlace "Volver al inicio" */
+  /* Enlace "Volver al inicio" */
   .link-home {
     color: #6b7280;
     text-decoration: underline;
@@ -92,7 +95,7 @@ import Layout from '../layouts/Layout.astro';
     color: #374151;
   }
 
-  /* Estilo del botón "Contactar" */
+  /* Botón "Contactar" */
   .btn-contact {
     display: inline-block;
     padding: 0.75rem 2rem;
@@ -116,13 +119,14 @@ import Layout from '../layouts/Layout.astro';
     transform: scale(0.95);
   }
 
+  /* Tablet y desktop */
   @media (max-width: 1024px) {
-    /* En tablet y móvil, quitamos los márgenes negativos */
     .grid > div:nth-child(2) {
       margin-left: 0;
     }
   }
 
+  /* Móvil */
   @media (max-width: 640px) {
     .error-description {
       font-size: 1rem;
@@ -136,7 +140,6 @@ import Layout from '../layouts/Layout.astro';
       padding: 0.5rem 0;
     }
 
-    /* En móvil, la imagen aparece primero */
     .order-1 {
       order: 2;
     }

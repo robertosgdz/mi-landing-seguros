@@ -2,45 +2,25 @@
 // IMPORTACIONES DE COMPONENTES REACT
 import SecureFeatures from '../components/SecureFeatures.jsx';
 ---
-<!-- ============================================
-     SECCIÓN: CÓMO FUNCIONA ASEOFI
-     ============================================ -->
+<!-- Sección: Cómo funciona ASEOFI -->
 <section id="how-it-works" class="py-20 md:py-32 bg-white overflow-hidden -mt-32 md:-mt-40 lg:-mt-40 relative z-20">
   
-  <!-- CONTENEDOR PRINCIPAL (Ancho máximo 1280px con padding lateral) -->
+  <!-- Contenedor principal -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <!-- ============================================
-         GRID PRINCIPAL (Video + Contenido de texto)
-         Responsivo: 1 columna en móvil, 2 columnas en desktop
-         ============================================ -->
+    <!-- Grid principal: video + contenido -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-stretch min-h-150">
       
-      
-      <!-- ============================================
-           COLUMNA IZQUIERDA: VIDEO DEMOSTRATIVO
-           ============================================ -->
-      <!-- aspect-3/4 (móvil/tablet) = Relación 3:4 VERTICAL (más largo) | lg:aspect-auto (desktop) = Altura completa -->
-      <!-- mb-15 md:mb-18 = Margen inferior en móvil/tablet (separación) -->
-      <!-- lg:-ml-20 lg:w-11/12 = Desplazamiento negativo en desktop para efecto visual -->
-      <!-- md:w-1/2 = Tablet: 50% ancho (más estrecho que antes) -->
-      <!-- md:max-h-[700px] = Tablet: altura máxima 700px (más alto) -->
-      <!-- md:mx-auto = Tablet: centrado -->
+      <!-- Columna izquierda: video demostrativo -->
       <div class="aspect-3/4 lg:aspect-auto lg:h-full w-full md:w-1/2 md:max-h-175 md:mx-auto lg:mx-0 lg:-ml-20 lg:w-11/12 max-h-150 lg:max-h-none mb-15 md:mb-18 lg:mb-0">
         
-        <!-- Contenedor de video con bordes, sombra y esquinas redondeadas -->
+        <!-- Contenedor de video con borde y sombra -->
         <div class="relative rounded-2xl overflow-hidden border border-gray-100 group h-full shadow-sm">
           
-          <!-- Overlay oscuro sutil (z-10 = encima del video) para mejorar legibilidad -->
+          <!-- Overlay oscuro sutil -->
           <div class="absolute inset-0 bg-black/5 z-10 pointer-events-none"></div>
-          <!-- Nota:
-            - absolute inset-0 = Cubre todo el contenedor
-            - bg-black/5 = Fondo negro con 5% opacidad
-            - z-10 = Capa intermedia (encima del video)
-            - pointer-events-none = No interfiere con interacciones
-          -->
           
-          <!-- VIDEO DE DEMOSTRACIÓN -->
+          <!-- Video de demostración -->
           <video 
             class="absolute inset-0 w-full h-full object-cover object-center"
             autoplay 
@@ -51,77 +31,26 @@ import SecureFeatures from '../components/SecureFeatures.jsx';
           >
             <source src="/secure01.mp4" type="video/mp4" />
           </video>
-          <!-- Nota:
-            - absolute inset-0 = Posiciona el video dentro del contenedor
-            - w-full h-full = Rellena todo el contenedor
-            - object-cover = Rellena sin distorsionar (recorta si es necesario)
-            - object-center = Centra el video dentro del contenedor
-            - autoplay loop muted = Reproducción automática infinita sin sonido
-            - playsinline = Reproduce en línea en móvil (sin pantalla completa)
-            - preload="metadata" = Carga solo metadatos para optimizar
-            - SIN lg:h-[115%] = Desktop mantiene proporción natural sin zoom
-          -->
         </div>
       </div>
 
-
-
-      <!-- ============================================
-           COLUMNA DERECHA: CONTENIDO EXPLICATIVO
-           ============================================ -->
-      <!-- flex flex-col = Flexbox vertical -->
-      <!-- justify-start = Contenido alineado arriba -->
-      <!-- pt-0 pb-10 = Sin padding superior, padding inferior 40px -->
+      <!-- Columna derecha: contenido explicativo -->
       <div class="flex flex-col justify-start pt-0 pb-10">
         
-        <!-- CONTENEDOR DEL TÍTULO -->
-        <!-- mb-10 = Margen inferior 40px (separación del contenido) -->
-        <!-- -mt-5 = Margen superior negativo -20px (ajuste visual) -->
+        <!-- Título principal -->
         <div class="mb-10 -mt-5">
-          
-          <!-- TÍTULO H2 PRINCIPAL -->
           <h2 class="text-4xl md:text-7xl font-bold text-gray-900 leading-tight mb-0 uppercase tracking-tighter">
             Solicita Y Asegura En Minutos
           </h2>
-          <!-- Nota:
-            - text-4xl (móvil: 36px) → md:text-7xl (desktop: 48px)
-            - font-bold = Peso 700 para máximo impacto visual
-            - text-gray-900 = Color negro oscuro (#111827)
-            - leading-tight = Altura de línea 1.25 (compacta, visual fuerte)
-            - mb-0 = Sin margen inferior (control preciso)
-            - uppercase = Convierte a MAYÚSCULAS
-            - tracking-tighter = Espaciado entre letras -0.05em (más compacto)
-          -->
         </div>
 
-
-
-        <!-- COMPONENTE REACT: CARACTERÍSTICAS Y FLUJO -->
+        <!-- Componente React: características y flujo -->
         <SecureFeatures client:only="react" />
-        <!-- Nota:
-          - client:only="react" = Este componente solo se renderiza en el cliente (interactivo)
-          - Muestra el proceso paso a paso: Solicitud → Cotización → Aceptar/Rechazar
-        -->
-
-
 
       </div>
 
-
-
     </div>
- 
-        
-        
-    <!-- ============================================
-         BLOQUE INDICADOR DE RIESGO
-         ============================================ -->
-    <!-- Aquí va el bloque de indicador de riesgo, se pondrá o no en un futuro -->
-
-
 
   </div>
-
-
 
 </section>

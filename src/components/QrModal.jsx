@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 export default function QrModal() {
+  // Estado del modal
   const [isOpen, setIsOpen] = useState(false);
 
-  // Bloquear scroll del body cuando el modal está abierto
+  // Bloquea scroll al abrir modal
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -13,7 +14,7 @@ export default function QrModal() {
     return () => { document.body.style.overflow = 'auto'; };
   }, [isOpen]);
 
-  // Cerrar con tecla Escape
+  // Cierra modal con tecla Escape
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') setIsOpen(false);
@@ -24,7 +25,7 @@ export default function QrModal() {
 
   return (
     <>
-      {/* BOTÓN - Versión sección (QR AUMENTADO) */}
+      {/* Botón QR */}
       <button 
         className="qr-download-button" 
         onClick={() => setIsOpen(true)}
@@ -40,7 +41,7 @@ export default function QrModal() {
         </div>
       </button>
 
-      {/* MODAL POPUP */}
+      {/* Modal popup */}
       {isOpen && (
         <div 
           className="fixed inset-0 z-200 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn"
@@ -51,7 +52,7 @@ export default function QrModal() {
             onClick={(e) => e.stopPropagation()} 
           >
             
-            {/* BOTÓN DE CERRAR (X) */}
+            {/* Botón cerrar X */}
             <button 
               onClick={() => setIsOpen(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-[#0d203e] transition-colors duration-200"
@@ -62,10 +63,10 @@ export default function QrModal() {
               </svg>
             </button>
             
-            {/* Contenido del Modal */}
+            {/* Contenido del modal */}
             <div className="flex flex-col items-center gap-8 text-center pt-4">
               
-              {/* QR IMAGEN */}
+              {/* QR */}
               <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
                 <img 
                   src="/qr-aseofi.svg" 
@@ -74,7 +75,7 @@ export default function QrModal() {
                 />
               </div>
 
-              {/* TEXTO - DESCARGA LA APP */}
+              {/* Texto */}
               <div className="space-y-3">
                 <h3 className="text-2xl font-bold text-[#0d203e]">DESCARGA LA APP</h3>
                 <p className="text-gray-600 text-xl">
@@ -87,7 +88,9 @@ export default function QrModal() {
         </div>
       )}
 
+      {/* Estilos */}
       <style>{`
+        /* Botón QR */
         .qr-download-button {
           background: none;
           border: none;
@@ -107,11 +110,12 @@ export default function QrModal() {
           transform: scale(0.95);
         }
 
+        /* Contenedor QR */
         .qr-download-button-content {
           position: relative;
         }
 
-        /* TAMAÑO DEL QR AUMENTADO AQUÍ 👇 */
+        /* Imagen QR */
         .qr-download-button-image {
           width: 200px;
           height: 200px;

@@ -1,27 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function ScrollReveal({ children, className = '' }) {
+  // Referencia al elemento DOM y estado de visibilidad
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
+  // Observa cuando el elemento entra en pantalla
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
+    // Configura observer para detectar visibilidad
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          // Se anima cuando entra en pantalla
+          // Anima cuando entra en pantalla
           if (entry.isIntersecting) {
             setVisible(true);
           } else {
-            // Si quieres que se oculte al salir, pon esto a true
+            // Se oculta al salir de pantalla
             setVisible(false);
           }
         });
       },
       {
-        threshold: 0.15,           // 15% visible
+        threshold: 0.15,
         rootMargin: '0px 0px -10% 0px',
       }
     );
@@ -30,6 +33,7 @@ export default function ScrollReveal({ children, className = '' }) {
     return () => observer.disconnect();
   }, []);
 
+  // Contenedor con animación
   return (
     <div
       ref={ref}

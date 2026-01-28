@@ -1,5 +1,4 @@
 ---
-import '../styles/global.css';
 import '../styles/animations.css';
 import CookieBanner from '../components/CookieBanner.astro';
 import PrivacyModal from '../components/PrivacyModal.astro';
@@ -21,12 +20,11 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
     <meta name="description" content={description} />
     <title>{title}</title>
     
-    <!-- CSS CRÍTICO INLINADO - NO BLOQUEA RENDERIZADO -->
+    <!-- CSS crítico inlinado -->
     <style is:global>
-    @import "tailwindcss";
+      @import "tailwindcss";
 
-
-      /* ===== GLOBAL ===== */
+      /* Estilos globales */
       html {
         scroll-behavior: smooth;
       }
@@ -51,7 +49,7 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
         transform: translateY(-2px);
       }
 
-      /* ===== HERO SECTION ===== */
+      /* Hero section */
       .hero-section {
         position: relative;
         width: 100%;
@@ -74,7 +72,6 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
         background-color: hsla(217, 65%, 15%, 0.30);
       }
 
-      /* CONTENIDO PRINCIPAL */
       .hero-content {
         position: relative;
         z-index: 10;
@@ -128,7 +125,7 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
         animation: fadeInUp 0.8s ease-out 0.2s backwards;
       }
 
-      /* ===== BOTÓN ESPECIALISTA (Botón Flotante) ===== */
+      /* Botón flotante especialista */
       .hero-buttons-right {
         position: fixed;
         bottom: 2rem;
@@ -173,7 +170,7 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
         background-color: rgba(255, 255, 255, 0.15);
       }
 
-      /* ===== CONTENEDOR QR ===== */
+      /* Contenedor QR */
       .qr-button-container {
         position: fixed;
         top: 7rem;
@@ -225,10 +222,7 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       }
 
-      /* ========================================= */
-      /* ============ MEDIA QUERIES ============== */
-      /* ========================================= */
-
+      /* Responsive: Tablet */
       @media (min-width: 641px) and (max-width: 1023px) {
         .qr-image {
           width: 200px !important;
@@ -273,6 +267,7 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
         }
       }
 
+      /* Responsive: Móvil */
       @media (max-width: 640px) {
         .hero-buttons-right {
           left: 50%;
@@ -284,7 +279,7 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
         
         .hero-section {
           align-items: center;
-          background-position: center -00px;
+          background-position: center 0px;
         }
 
         .hero-content {
@@ -307,6 +302,7 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
         }
       }
 
+      /* Responsive: Desktop */
       @media (min-width: 1024px) {
         .hero-section {
           background-position: center 1rem;
@@ -337,10 +333,7 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
         max-width: fit-content !important;
       }
     </style>
-    
-    <!-- CSS NO-CRÍTICO CARGADO ASÍNCRONO -->
-    <link rel="stylesheet" href="../styles/global.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="../styles/global.css"></noscript>
+
     
     <link 
       rel="preload" 
@@ -355,18 +348,15 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
   <body class="bg-blue-100">
     <slot />
     
-    <!-- COOKIE BANNER -->
+    <!-- Componentes modales y banner -->
     <CookieBanner />
-    
-    <!-- PRIVACY MODAL -->
     <PrivacyModal />
-    
-    <!-- LEGAL INFO MODAL -->
     <LegalInfoModal />
   </body>
 </html>
 
 <script>
+  // Observador para animaciones al scroll
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -382,6 +372,7 @@ const { title, description = "Landing page de seguros moderna" } = Astro.props;
     });
   }, observerOptions);
 
+  // Observa todas las secciones
   document.querySelectorAll('section').forEach((section) => {
     observer.observe(section);
   });

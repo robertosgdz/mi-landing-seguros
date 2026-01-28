@@ -2,34 +2,26 @@
 // src/components/QrDownload.astro
 import QrModal from '../components/QrModal.jsx';
 ---
-
+<!-- Sección: Descarga la App -->
 <section id="qr-download" class="py-12 md:py-12 bg-white overflow-hidden">
 
-  
-  <!-- CONTENEDOR PRINCIPAL (Ancho máximo 1280px) -->
+  <!-- Contenedor principal -->
   <div class="max-w-7xl mx-auto px-4 sm:px-0 lg:ml-37.5">
     
-    <!-- GRID PRINCIPAL (Contenido + QR) -->
-    <!-- Responsivo: 1 columna móvil, 2 columnas desktop -->
+    <!-- Grid: contenido + QR -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center min-h-100">
       
-      <!-- ============================================
-           COLUMNA IZQUIERDA: CONTENIDO TEXTUAL
-           ============================================ -->
+      <!-- Columna izquierda: contenido textual -->
       <div class="flex flex-col justify-start pt-0 pb-10 md:pl-6 lg:pl-0 lg:-ml-20">
 
-        <!-- ============================================
-             TÍTULO PRINCIPAL
-             ============================================ -->
+        <!-- Título principal -->
         <div class="mb-10">
           <h2 class="text-4xl md:text-7xl font-bold text-gray-900 leading-tight mb-0 uppercase tracking-tighter">
             Descarga La App
           </h2>
         </div>
 
-        <!-- ============================================
-             PÁRRAFO SIMPLE
-             ============================================ -->
+        <!-- Descripción -->
         <div class="space-y-6">
           <p class="text-xl text-gray-700 leading-relaxed max-w-2xl">
             Gestiona tus solicitudes de seguros en cualquier momento y lugar. 
@@ -38,20 +30,14 @@ import QrModal from '../components/QrModal.jsx';
         </div>
 
       </div>
-      <!-- Fin de la columna izquierda -->
 
-      <!-- ============================================
-           COLUMNA DERECHA: QR (SIN DIV GRIS)
-           ============================================ -->
+      <!-- Columna derecha: QR -->
       <div class="h-fit lg:w-11/12 mx-auto">
         <QrModal client:only="react" />
       </div>
-      <!-- Fin de la columna derecha -->
 
     </div>
-    <!-- Fin del grid -->
 
   </div>
-  <!-- Fin del contenedor -->
 
 </section>
